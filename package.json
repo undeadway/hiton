@@ -20,7 +20,7 @@
     "plus"
   ],
   "dependencies": {
-    "jsconst": "git+https://gitee.com/undeadway/jsconst#dev"
+    "coralian": "git+https://gitee.com/undeadway/coralian#dev"
   },
   "devDependencies": {
     "modell-highlighter": "git+https://gitee.com/undeadway/modell-highlighter#dev"

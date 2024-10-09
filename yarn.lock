@@ -2,9 +2,16 @@
 # yarn lockfile v1
 
 
-jsconst@0.0.5, "jsconst@git+https://gitee.com/undeadway/jsconst#dev":
+"coralian@git+https://gitee.com/undeadway/coralian#dev":
+  version "0.0.31"
+  resolved "git+https://gitee.com/undeadway/coralian#4e6e3832c5e929e7b046ef44275101492f9627b8"
+  dependencies:
+    jsconst "0.0.5"
+
+jsconst@0.0.5:
   version "0.0.5"
-  resolved "git+https://gitee.com/undeadway/jsconst#1055e825fa27dac8e2b46c2014d8deb5b5b054bc"
+  resolved "https://registry.npmmirror.com/jsconst/-/jsconst-0.0.5.tgz#833b1d4d4175abdfde535641842ebcbf274b8a6b"
+  integrity sha512-7f6C00qhOqOeGU8m/7zi2xhw0Pn1x8Tl09v2WBLxyqvDlWO0HIlcwbBtcK/Fh3Ph4Rf6CbsB0LdQCdUO6NCTOQ==
 
 "modell-highlighter@git+https://gitee.com/undeadway/modell-highlighter#dev":
   version "0.1.0"
