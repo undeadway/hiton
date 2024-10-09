@@ -31,7 +31,7 @@ const Links = (hitOn) => {
 
 		while ((matched = MAIL_REGX.exec(input)) !== null) {
 			const [ proto, href ] = matched;
-			const link = `<a href="mailto:${href}"${href}></a>`;
+			const link = `<a href="mailto:${href}">${href}</a>`;
 
 			input = links.replace(input, proto, link);
 		}
