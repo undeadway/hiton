@@ -1,5 +1,5 @@
-const utils = require("./../../lib/utils");
-const { MIME_TEXT_CSS, QUOTED_PRINTABLE, HTML_IMAGE_REGX, MK_DASH, MK_POINT, BLANK, AT_MHTML_BLINK } = require("./../../lib/constants");
+const utils = require("./../lib/utils");
+const { MIME_TEXT_CSS, QUOTED_PRINTABLE, HTML_IMAGE_REGX, MK_DASH, MK_POINT, BLANK, AT_MHTML_BLINK } = require("./../lib/constants");
 
 const getStyles = () => {
 	const styles = document.getElementsByTagName("style");
