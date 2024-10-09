@@ -1,4 +1,4 @@
-const { HTML: { Unit } } = JsConst;
+const { HTML: { Unit, Tag } } = JsConst;
 
 const unitSet = (() => {
 	const keys = Object.keys(Unit);
@@ -12,12 +12,15 @@ const unitSet = (() => {
 })();
 const Unit_PX = Unit.PX;
 
+const MarkMap = {
+	"^": Tag.SUP,
+	"!": Tag.SUB
+};
+
 const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		BOLD_REGX = /\*\*((.|\s)*?)\*\*/g,
 		DEL_LINE_REGX = /~~((.|\s)*?)~~/g,
 		INS_LINE_REGX = /==((.|\s)*?)==/g,
-		SUP_REGX =  /\^\^((.|\s)*?)\^\^/g,
-		SUB_REGX =  /!!((.|\s)*?)!!/g,
 		H6_REGX = /###### (.*?)(\n|$)/g,
 		H5_REGX = /##### (.*?)(\n|$)/g,
 		H4_REGX = /#### (.*?)(\n|$)/g,
@@ -26,14 +29,13 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		H1_REGX = /# (.*?)(\n|$)/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
 		FONT_REGX = /\?\[(\d+(.*?))\]\{(.*?)\}/,
-		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/;
+		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/,
+		SUP_SUB_REGX = /~(\^|!)\{(.*?)\}/;
 
 const ITALIC_STR = "<em>$1</em>",
 		BOLD_STR = "<strong>$1</strong>",
 		DEL_LINE_STR = "<del>$1</del>",
 		INS_LINE_STR = "<ins>$1</ins>",
-		SUP_STR = "<sup>$1</sup>",
-		SUB_STR = "<sup>$1</sup>",
 		H6_STR = "<h1 class=\"h6\">$1</h1>",
 		H5_STR = "<h1 class=\"h5\">$1</h1>",
 		H4_STR = "<h1 class=\"h4\">$1</h1>",
@@ -82,6 +84,21 @@ function replacePhonetic (input) {
 	return input;
 }
 
+function replaceSupSub(input) {
+	while((matched = SUP_SUB_REGX.exec(input)) !== null) {
+		let [ proto, mark, value ] = matched;
+
+		value = basicReplace(value);
+		mark = MarkMap[mark];
+
+		const output = `<${mark}>${value}</${mark}>`;
+
+		input = input.replace(proto, output);
+	}
+
+	return input;
+}
+
 /**
  * 这里的替换在任何位置都可以用到，比如：
  * 链接中的文字
@@ -95,8 +112,6 @@ function basicReplace(input) {
 	input = input.replace(BOLD_REGX, BOLD_STR); // 粗体字
 	input = input.replace(DEL_LINE_REGX, DEL_LINE_STR); // 删除线
 	input = input.replace(INS_LINE_REGX, INS_LINE_STR); // 下划线
-	input = input.replace(SUP_REGX, SUP_STR); // 上标
-	input = input.replace(SUB_REGX, SUB_STR); // 下标
 
 	input = input.replace(H6_REGX, H6_STR); // 六级标题
 	input = input.replace(H5_REGX, H5_STR); // 五级标题
@@ -108,6 +123,7 @@ function basicReplace(input) {
     input = replaceColor(input); // 颜色
 	input = replaceFont(input); // 字号
     input = replacePhonetic(input); // 注音
+	input = replaceSupSub(input); // 上下标
 
 	return input;
 }
