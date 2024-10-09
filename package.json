@@ -1,0 +1,7 @@
+{
+  "name": "hiton",
+  "version": "0.0.1",
+  "devDependencies": {
+    "modell-highlighter": "git+https://gitee.com/undeadway/modell-highlighter#dev"
+  }
+}
