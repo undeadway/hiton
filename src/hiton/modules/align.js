@@ -4,8 +4,8 @@
  * 右对齐  >>右对齐:|
  */
 
-const align = require("./../../lib/utils").aspectBase();
-const basicReplace = require("./modules/basic");
+const align = require("./../../lib/utils").aspectBase("align");
+const basicReplace = require("./basic");
 
 const 	CENTER_ALIGN_REGX = /\n>>((.|\s)+?)<<\n/,
 		LEFT_ALIGN_REGX = /\n\|\:((.|\s)+?)<<\n/,

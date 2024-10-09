@@ -5,7 +5,7 @@ const unitSet = (() => {
 	const unitVals = new Set();
 
 	for (const key of keys) {
-		unitVals.put(Unit[key]);
+		unitVals.add(Unit[key]);
 	}
 
 	return unitVals;
@@ -25,7 +25,7 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		H2_REGX = /## (.*?)(\n|$)/g,
 		H1_REGX = /# (.*?)(\n|$)/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
-		FONT_REGX = /\?\[(\d+(px|em|rem))\]\{(.*?)\}/,
+		FONT_REGX = /\?\[(\d+(.*?))\]\{(.*?)\}/,
 		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/;
 
 const ITALIC_STR = "<em>$1</em>",
@@ -42,7 +42,7 @@ const ITALIC_STR = "<em>$1</em>",
 		H1_STR = "<h1 class=\"h1\">$1</h1>";
 
 function replaceColor (input) {
-	while ((mtched = FONT_REGX.exec(input)) !== null) {
+	while ((matched = COLOR_REGX.exec(input)) !== null) {
 		let [ proto, color, value ] = matched;
 
 		value = basicReplace(value);
@@ -55,10 +55,10 @@ function replaceColor (input) {
 }
 
 function replaceFont (input) {
-	while ((mtched = COLOR_REGX.exec(input)) !== null) {
+	while ((matched = FONT_REGX.exec(input)) !== null) {
 		let [ proto, size, unit, value ] = matched;
 
-		unit = unitSet.has[unit] ? unit : Unit_PX;
+		unit = unitSet.has[unit.toLowerCase()] ? unit : Unit_PX;
 
 		value = basicReplace(value);
 		const output = `<span style="font-size:${size};">${value}</span>`;
@@ -69,8 +69,8 @@ function replaceFont (input) {
 	return input;
 }
 
-function replacePhonetic () {
-	while ((mtched = PHONETIC_REGX.exec(input)) !== null) {
+function replacePhonetic (input) {
+	while ((matched = PHONETIC_REGX.exec(input)) !== null) {
 		let [ proto, text, pronunciation ] = matched;
 
 		text = basicReplace(text);

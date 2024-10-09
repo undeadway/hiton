@@ -14,32 +14,34 @@ const basicReplace = require("./modules/basic");
 
 module.exports = require("./base").create((input) => {
 
+	input = input.replace(/\r\n/g, "\n");
+
 	input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 
 	let link = replaceSrcLinks(); // 外部连接（链接、邮箱）
-	let image = replaceImages(); // 图像（图像、图像引用）
+	// let image = replaceImages(); // 图像（图像、图像引用）
 	let align = replaceAlign(); // 对齐
-	let escape = replaceEscapers(); // 转义字符
+	// let escape = replaceEscapers(); // 转义字符
 
-	input = image.before(input);
+	// input = image.before(input);
 	input = link.before(input);
 	input = align.before(input);
-	input = escape.before(input);
+	// input = escape.before(input);
 
 	input = basicReplace(input); // 调用公共替换
 
-	input = replaceQuote(input); // 引用
-	input = replaceList(input); // 列表
-	input = replaceTable(input); // 表格（表格、表格引用）
+	// input = replaceQuote(input); // 引用
+	// input = replaceList(input); // 列表
+	// input = replaceTable(input); // 表格（表格、表格引用）
 
-	input = replaceReference(input); // 参考链接
+	// input = replaceReference(input); // 参考链接
 
 	input = align.after(input);
-	input = image.after(input);
-	input = escape.after(input);
+	// input = image.after(input);
+	// input = escape.after(input);
 	input = link.after(input);
 
-	input = replaceP(input); // 段落
+	// input = replaceP(input); // 段落
 
 	return input;
 }, {

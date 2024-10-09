@@ -28,6 +28,4 @@ const replaceTable = (input) => {
 	return input;
 }
 
-export default {
-    replaceTable
-}
+module.exports = exports = replaceTable;
