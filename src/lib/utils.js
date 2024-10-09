@@ -72,19 +72,19 @@ const decodeHtmlTag = (str) => {
  */
 const aspectBase = (key) => {
 
-	const array = [];
+	const spects = [];
 
 	return {
 		// before 方法需要每个子类自行实现
 		replace: (input, part, str) => {
 
-			input = input.replace(part, `{${key}~${array.length}}`);
-			array.push(str);
+			input = input.replace(part, `{${key}~${spects.length}}`);
+			spects.push(str);
 
 			return input;
 		},
 		after: (input) => {
-			Array.forEach(array, (i, e) => {
+			Array.forEach(spects, (i, e) => {
 				input = input.replace(`{${key}~${i}}`, e);
 			});
 
@@ -104,7 +104,6 @@ const compireObjectToXmlAtruibute = (input) => {
 
 	return str;
 }
-
 
 module.exports = exports = {
 	checkNumberIsNotEmpty,

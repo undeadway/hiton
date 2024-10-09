@@ -1,10 +1,10 @@
 
 const { aspectBase, decodeHtmlTag, compireObjectToXmlAtruibute } = require("./../lib/utils");
-const { Char: { Angle }, XmlEntity } = JsConst;
+const { Char: { Angle }, XmlEntity, HTML: { Tag } } = JsConst;
 
 const BR_TAG = "<br />";
 const NL_REGX = /\n/g;
-const PRE_TAG = JsConst.HtmlTag.PRE;
+const PRE_TAG = Tag.PRE;
 
 function replaceObjects(str, arg) {
 
