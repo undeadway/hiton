@@ -30,7 +30,7 @@ module.exports = require("./base").create((input) => {
 
 	input = basicReplace(input); // 调用公共替换
 
-	// input = replaceQuote(input); // 引用
+	input = replaceQuote(input); // 引用
 	// input = replaceList(input); // 列表
 	// input = replaceTable(input); // 表格（表格、表格引用）
 
