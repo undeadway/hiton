@@ -1,7 +1,31 @@
 {
   "name": "hiton",
   "version": "0.0.1",
+  "description": "A markdown parser",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/undeadway/hiton.git"
+  },
+  "bugs": {
+    "url": "https://gitee.com/undeadway/hiton/issues"
+  },
+  "keywords": [
+    "markdown",
+    "parser",
+    "plus"
+  ],
+  "dependencies": {
+    "jsconst": "git+https://gitee.com/undeadway/jsconst#dev"
+  },
   "devDependencies": {
     "modell-highlighter": "git+https://gitee.com/undeadway/modell-highlighter#dev"
-  }
+  },
+  "homepage": "http://tech-demo.waygc.net/toys/?hiton",
+  "author": "hzwaygc@gmail.com",
+  "license": "Apache-2.0"
 }
