@@ -1,7 +1,23 @@
+const replaceTable = require("./modules/table");
+const { COMMENT_REGX, BLANK } = require("./../lib/constants");
+
+const H6_REGX = /###### (.*?)(\n|$)/g,
+	H5_REGX = /##### (.*?)(\n|$)/g,
+	H4_REGX = /#### (.*?)(\n|$)/g,
+	H3_REGX = /### (.*?)(\n|$)/g,
+	H2_REGX = /## (.*?)(\n|$)/g,
+	H1_REGX = /# (.*?)(\n|$)/g;
+
+const H6_STR = "<h1 class=\"h6\">$1</h1>",
+	H5_STR = "<h1 class=\"h5\">$1</h1>",
+	H4_STR = "<h1 class=\"h4\">$1</h1>",
+	H3_STR = "<h1 class=\"h3\">$1</h1>",
+	H2_STR = "<h1 class=\"h2\">$1</h1>",
+	H1_STR = "<h1 class=\"h1\">$1</h1>";
 
 const HitOn = module.exports = require("./base").create((input) => {
 
-	input = input.replace(COMMENT_REGX, String.BLANK); // 去掉注释
+	input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 
 	let link = replaceSrcLinks(); // 外部连接
 	let align = replaceAlign(); // 对齐
@@ -30,8 +46,7 @@ const HitOn = module.exports = require("./base").create((input) => {
 	input = escape.after(input);
 	input = link.after(input);
 
-	// 整个文本中，到处都有需要换行处理的地方，而且换行直接<br /> 更符合我自己的习惯，所以段落处理不再实现
-	//input = replaceP(input); // 段落
+	input = replaceP(input); // 段落
 
 	return input;
 }, {
