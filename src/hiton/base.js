@@ -66,7 +66,7 @@ const BUILT_IN_ASPECTS = {
 };
 
 module.exports = {
-	create: (parse, arg) => {
+	create: (parser, arg) => {
 
 		function replaceURI(str) {
 
@@ -101,7 +101,7 @@ module.exports = {
 					});
 				}
 
-				str = parse(str);
+				str = parser(str);
 
 				if (arg.object) { // 内置对象处理
 					Array.forEach(arg.object, (i, o) => {
