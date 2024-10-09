@@ -1,4 +1,4 @@
-const { Space } = require("jsconst");
+const { Space } =JsConst;
 const TABLE_REGEX = /(\|(.)+\|\n)+/,
 	VERTICAL_BAR = /\|/g;
 const TR_JOIN = "</tr><tr>",

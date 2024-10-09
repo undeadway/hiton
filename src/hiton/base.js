@@ -1,6 +1,6 @@
 
-const { aspectBase, decodeHtmlTag, compireObjectToXmlAtruibute } = require("./util");
-const { Char: { Angle } } = JsConst;
+const { aspectBase, decodeHtmlTag, compireObjectToXmlAtruibute } = require("./../lib/utils");
+const { Char: { Angle }, XmlEntity } = JsConst;
 
 const BR_TAG = "<br />";
 const NL_REGX = /\n/g;
@@ -15,8 +15,8 @@ function replaceObjects(str, arg) {
 		let inner = matched[1];
 		let input = arg.tag.start + inner + arg.tag.end;
 		if (htmlTag === PRE_TAG) {
-			inner = inner.replace(Angle.LEFT, "&lt;"); // 所有预定义标签中的HTML标签都无效化处理
-			inner = inner.replace(Angle.RIGHT, "&gt;");
+			inner = inner.replace(Angle.LEFT, XmlEntity.LT); // 所有预定义标签中的HTML标签都无效化处理
+			inner = inner.replace(Angle.RIGHT, XmlEntity.GT);
 		}
 
 		if (arg.replace) { // 内部还有切换需求的时候进行处理

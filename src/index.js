@@ -1,3 +1,5 @@
+require("jsconst");
+
 const HitOn = require("./hiton");
 const saveAsMHTML = require("./save-as-mhtml/index");
 

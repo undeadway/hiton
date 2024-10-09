@@ -15,7 +15,7 @@ const H6_STR = "<h1 class=\"h6\">$1</h1>",
 	H2_STR = "<h1 class=\"h2\">$1</h1>",
 	H1_STR = "<h1 class=\"h1\">$1</h1>";
 
-const HitOn = module.exports = require("./base").create((input) => {
+module.exports = require("./base").create((input) => {
 
 	input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 

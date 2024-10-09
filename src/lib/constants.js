@@ -1,4 +1,4 @@
-const { Char } = require("jsconst");
+const { Char } = JsConst;
 
 const BASE64 = "base64";
 const BINARY = "binary";
