@@ -45,7 +45,9 @@ const replaceTable = () => {
 				});
 				if (index === 0) {
 					tHead = THEAD_START + TD_START + line.join(TD_JOIN) + TD_END + THEAD_END;
-				} else if (index !== 1) {
+				} else if (index === 1) {
+					// TODO 表的第二行定义暂时不做处理
+				} else {
 					output.push(TD_START + line.join(TD_JOIN) + TD_END);
 				}
 			});
