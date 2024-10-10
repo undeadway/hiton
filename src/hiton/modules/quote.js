@@ -3,7 +3,7 @@ const aspect = aspectBase("quote");
 
 const { Char: { Parenthe, Space: { LF } } } = JsConst;
 
-const MAIN_QUOT_REGX = /(\n(> (.*)\n)+)/,
+const MAIN_QUOT_REGX = /(\n(>(.*)\n)+)/,
 	NL_RT_ANGLE_GLOBAL_REGX = /\n>/g;
 const STRING_QUOTE = "引用";
 const QUOTE_PARSE_REGX = /quote~\d+\-\-\d+/;
