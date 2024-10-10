@@ -43,7 +43,7 @@ const hitOn = module.exports = require("./base").create((input) => {
 	
 			string = replaceQuote(string); // 引用
 			string = replaceList(string); // 列表
-			string = replaceTable(hitOn, string); // 表格（表格、表格引用）
+			string = replaceTable(hitOn)(string); // 表格（表格、表格引用）
 	
 			// string = replaceReference(string); // 参考链接
 	

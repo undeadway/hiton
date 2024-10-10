@@ -43,6 +43,4 @@ const Align = () => {
 	return align;
 }
 
-
-
 module.exports = exports = Align;
