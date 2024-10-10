@@ -76,7 +76,7 @@ module.exports = {
 		}
 	
 		return {
-			parse: (str, plugIns = {}) => {
+			parse: (str, options, plugIns = {}) => {
 
 				let { queue, aspect, object } = plugIns;
 				let aspects = [];
@@ -98,7 +98,7 @@ module.exports = {
 					});
 				}
 
-				str = parser(str);
+				str = parser(str, options);
 
 				if (arg.object) { // 内置对象处理
 					Array.forEach(arg.object, (i, o) => {

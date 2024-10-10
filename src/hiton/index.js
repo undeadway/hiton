@@ -19,13 +19,13 @@ const replaceReference = require("./modules/reference");
 
 const inlineReplace = require("./modules/inline");
 
-module.exports = require("./base").create((input) => {
+module.exports = require("./base").create((input, options) => {
 
 	try {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 		const _replaceTable = replaceTable();
-		const _replaceHeading = replaceHeading();
+		const _replaceHeading = replaceHeading(options);
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
