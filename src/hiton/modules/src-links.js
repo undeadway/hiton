@@ -7,21 +7,21 @@
  * <hzwaygc@gmail.com> => <a href="mailto:hzwaygc@gmail.com">hzwaygc@gmail.com</a>
  */
 const { Char } = JsConst;
-const inlineReplace = require("./inline");
+const replaceInline = require("./inline");
 const links = require("./../../lib/utils").aspectBase("links");
 
 const LINK_REGX = /\[((.|\s)*?)\]\(((.|\s)*?)( "(.*?)")*\)/;
 const MAIL_REGX = /<([a-zA-Z_\-0-9]+@[a-zA-Z_\-0-9]+(\.[a-zA-Z_\-0-9]+)+)>/;
 
 
-const Links = (hitOn) => {
+const replaceSrcLinks = (hitOn) => {
 
 	links.before = (input) => {
 		while ((matched = LINK_REGX.exec(input)) !== null) {
 			let [ proto , label, a, href, b, title ] = matched;
 
 			// let [ label, title ] = matched[3].split(Char.Space.SPACE);
-			label = label ? inlineReplace(label) : href;
+			label = label ? replaceInline(label) : href;
 			title = title ? `title=${title}` : String.BLANK;
 
 			const link = `<a ${title} href="${href}">${label}</a>`;
@@ -42,4 +42,4 @@ const Links = (hitOn) => {
 	return links;
 }
 
-module.exports = exports = Links;
+module.exports = exports = replaceSrcLinks;

@@ -17,7 +17,7 @@ const replaceHeading = require("./modules/heading");
 const replaceTable = require("./modules/table");
 const replaceReference = require("./modules/reference");
 
-const inlineReplace = require("./modules/inline");
+const replaceInline = require("./modules/inline");
 
 module.exports = require("./base").create((input, options) => {
 
@@ -26,6 +26,7 @@ module.exports = require("./base").create((input, options) => {
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 		const _replaceTable = replaceTable();
 		const _replaceHeading = replaceHeading(options);
+		const _replaceImages = replaceImages(options);
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
@@ -33,27 +34,24 @@ module.exports = require("./base").create((input, options) => {
 			string = LF + string + LF;
 
 			let link = replaceSrcLinks(); // 外部连接（链接、邮箱）
-			// let image = replaceImages(); // 图像（图像、图像引用）
 			let align = replaceAlign(); // 对齐
 			// let escape = replaceEscapers(); // 转义字符
-	
-			// string = image.before(string);
+
 			string = link.before(string);
 			string = align.before(string);
 			// string = escape.before(string);
 	
-			string = inlineReplace(string); // 行内设置
-	
-			string = _replaceHeading(string);// 头部
+			string = replaceInline(string); // 行内设置
 			string = replaceQuote(string); // 引用
 			string = replaceList(string); // 列表
+	
+			string = _replaceHeading(string);// 头部
 			string = _replaceTable(string); // 表格（表格、表格引用）
+			string = _replaceImages(string); // 图像（图像、图像引用）
 	
 			// string = replaceReference(string); // 参考链接
 	
 			string = align.after(string);
-			// string = image.after(string);
-			// string = escape.after(string);
 			string = link.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行

@@ -59,7 +59,7 @@ function highMode() {
     }
 }
 
-function headingReplace (options) {
+function replaceHeading (options) {
     if (options.heading.toUpperCase() === COUNTING_MODE) {
         return  highMode();
     } else {
@@ -67,4 +67,4 @@ function headingReplace (options) {
     }
 }
 
-module.exports = exports = headingReplace;
+module.exports = exports = replaceHeading;

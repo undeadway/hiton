@@ -1,4 +1,4 @@
-const inlineReplace = require("./inline");
+const replaceInline = require("./inline");
 
 const { Char: { Space } } =JsConst;
 const TABLE_REGX = /(\|(.)+\|\n)+/,
@@ -40,7 +40,7 @@ const replaceTable = () => {
 				line = line.slice(1, line.length - 1); // 去掉最开始和最后的 |
 				line = line.split(VERTICAL_BAR).map(td => {
 					td = td.trim();
-					td = inlineReplace(td); // 递归调用
+					td = replaceInline(td); // 递归调用
 					return td;
 				});
 				if (index === 0) {

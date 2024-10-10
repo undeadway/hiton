@@ -35,7 +35,7 @@ function replaceColor (input) {
 	while ((matched = COLOR_REGX.exec(input)) !== null) {
 		let [ proto, color, value ] = matched;
 
-		value = inlineReplace(value);
+		value = replaceInline(value);
 		const output = `<span style="color:#${color}">${value}</span>`;
 
 		input = input.replace(proto, output);
@@ -50,7 +50,7 @@ function replaceFont (input) {
 
 		unit = unitSet.has[unit.toLowerCase()] ? unit : Unit_PX;
 
-		value = inlineReplace(value);
+		value = replaceInline(value);
 		const output = `<span style="font-size:${size}${unit};">${value}</span>`;
 
 		input = input.replace(proto, output);
@@ -63,7 +63,7 @@ function replacePhonetic (input) {
 	while ((matched = PHONETIC_REGX.exec(input)) !== null) {
 		let [ proto, text, pronunciation ] = matched;
 
-		text = inlineReplace(text);
+		text = replaceInline(text);
 		const output = `<ruby>${text}<rp>（</rp><rt>${pronunciation}</rt><rp>）</rp></ruby>`;
 
 		input = input.replace(proto, output);
@@ -76,7 +76,7 @@ function replaceSupSub(input) {
 	while((matched = SUP_SUB_REGX.exec(input)) !== null) {
 		let [ proto, mark, value ] = matched;
 
-		value = inlineReplace(value);
+		value = replaceInline(value);
 		mark = MarkMap[mark];
 
 		const output = `<${mark}>${value}</${mark}>`;
@@ -92,7 +92,7 @@ function replaceSupSub(input) {
  * 链接中的文字
  * 对齐的文字
  */
-function inlineReplace(input) {
+function replaceInline(input) {
 
 	if (!input) return input;
 
@@ -109,4 +109,4 @@ function inlineReplace(input) {
 	return input;
 }
 
-module.exports = exports = inlineReplace;
+module.exports = exports = replaceInline;
