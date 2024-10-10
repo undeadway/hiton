@@ -31,9 +31,9 @@ function replaceQuote(input) {
 
 const replaceList = (function () {
 
-	const UL_REGEX = /(\*+\. (.)+\n)+/,
-		OL_1_REGEX = /([0-9]+\. (.)+\n)+/,
-		OL_A_REGEX = /([a-z]+\. (.)+\n)+/,
+	const UL_REGX = /(\*+\. (.)+\n)+/,
+		OL_1_REGX = /([0-9]+\. (.)+\n)+/,
+		OL_A_REGX = /([a-z]+\. (.)+\n)+/,
 		TYPE_1_LI_START = /[0-9]+\. /g,
 		TYPE_A_LI_START = /[a-z]+\. /g,
 		UL_LI_START = /\*+\. /g,
@@ -58,15 +58,15 @@ const replaceList = (function () {
 	return function (input) {
 
 		// ul
-		while ((matches = input.match(UL_REGEX)) !== null) {
+		while ((matches = input.match(UL_REGX)) !== null) {
 			input = replace(input, matches[0], UL_LI_START, UL_START_TAG, UL_END_TAG);
 		}
 		// ol -1
-		while ((matches = input.match(OL_1_REGEX)) !== null) {
+		while ((matches = input.match(OL_1_REGX)) !== null) {
 			input = replace(input, matches[0], TYPE_1_LI_START, OL_START_TYPE_1_TAG, OL_END_TAG);
 		}
 		// ol -a
-		while ((matches = input.match(OL_A_REGEX)) !== null) {
+		while ((matches = input.match(OL_A_REGX)) !== null) {
 			input = replace(input, matches[0], TYPE_A_LI_START, OL_START_TYPE_A_TAG, OL_END_TAG);
 		}
 
@@ -173,7 +173,7 @@ const ReplaceHolder = {
 	}
 };
 
-const TABLE_REGEX = /(\|(.)+\|\n)+/,
+const TABLE_REGX = /(\|(.)+\|\n)+/,
 	VERTICAL_BAR = /\|/g;
 const TR_JOIN = "</tr><tr>",
 	TD_JOIN = "</td><td>",
@@ -183,7 +183,7 @@ const TR_JOIN = "</tr><tr>",
 	TABLE_END = "</tr></table>";
 function replaceTable(input) {
 
-	while ((matches = input.match(TABLE_REGEX)) !== null) {
+	while ((matches = input.match(TABLE_REGX)) !== null) {
 		let part = matches[0]
 		let output = [];
 
