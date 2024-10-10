@@ -13,6 +13,7 @@ const replaceAlign = require("./modules/align");
 const replaceEscapers = require("./modules/escaper");
 const replaceQuote = require("./modules/quote");
 const replaceList = require("./modules/list");
+const replaceHeading = require("./modules/heading");
 const replaceTable = require("./modules/table");
 const replaceReference = require("./modules/reference");
 
@@ -24,6 +25,7 @@ module.exports = require("./base").create((input) => {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 		const _replaceTable = replaceTable();
+		const _replaceHeading = replaceHeading();
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
@@ -42,6 +44,7 @@ module.exports = require("./base").create((input) => {
 	
 			string = inlineReplace(string); // 行内设置
 	
+			string = _replaceHeading(string);// 头部
 			string = replaceQuote(string); // 引用
 			string = replaceList(string); // 列表
 			string = _replaceTable(string); // 表格（表格、表格引用）
