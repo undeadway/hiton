@@ -16,9 +16,9 @@ const replaceList = require("./modules/list");
 const replaceTable = require("./modules/table");
 const replaceReference = require("./modules/reference");
 
-const basicReplace = require("./modules/inline");
+const inlineReplace = require("./modules/inline");
 
-const hitOn = module.exports = require("./base").create((input) => {
+module.exports = require("./base").create((input) => {
 
 	try {
 		input = input.replace(/\r\n/g, LF);
@@ -40,7 +40,7 @@ const hitOn = module.exports = require("./base").create((input) => {
 			string = align.before(string);
 			// string = escape.before(string);
 	
-			string = basicReplace(string); // 调用公共替换
+			string = inlineReplace(string); // 行内设置
 	
 			string = replaceQuote(string); // 引用
 			string = replaceList(string); // 列表
@@ -54,7 +54,7 @@ const hitOn = module.exports = require("./base").create((input) => {
 			string = link.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
-			string = string.replace(N_REGX, Space.SPACE);// \n => 一个空白
+			string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
 
 
 			output.push(string);
