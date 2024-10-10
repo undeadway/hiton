@@ -7,7 +7,7 @@
  * <hzwaygc@gmail.com> => <a href="mailto:hzwaygc@gmail.com">hzwaygc@gmail.com</a>
  */
 const { Char } = JsConst;
-const basicReplace = require("./basic");
+const basicReplace = require("./inline");
 const links = require("./../../lib/utils").aspectBase("links");
 
 const LINK_REGX = /\[((.|\s)*?)\]\(((.|\s)*?)( "(.*?)")*\)/;

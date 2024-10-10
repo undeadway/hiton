@@ -16,13 +16,14 @@ const replaceList = require("./modules/list");
 const replaceTable = require("./modules/table");
 const replaceReference = require("./modules/reference");
 
-const basicReplace = require("./modules/basic");
+const basicReplace = require("./modules/inline");
 
 const hitOn = module.exports = require("./base").create((input) => {
 
 	try {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
+		const _replaceTable = replaceTable();
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
@@ -43,7 +44,7 @@ const hitOn = module.exports = require("./base").create((input) => {
 	
 			string = replaceQuote(string); // 引用
 			string = replaceList(string); // 列表
-			string = replaceTable(hitOn)(string); // 表格（表格、表格引用）
+			string = _replaceTable(string); // 表格（表格、表格引用）
 	
 			// string = replaceReference(string); // 参考链接
 	

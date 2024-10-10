@@ -5,7 +5,7 @@
  */
 
 const align = require("./../../lib/utils").aspectBase("align");
-const basicReplace = require("./basic");
+const basicReplace = require("./inline");
 
 const 	CENTER_ALIGN_REGX = /\n>>((.|\s)+?)<<\n/,
 		LEFT_ALIGN_REGX = /\n\|\:((.|\s)+?)<<\n/,
