@@ -22,7 +22,7 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		DEL_LINE_REGX = /~~((.|\s)*?)~~/g,
 		INS_LINE_REGX = /==((.|\s)*?)==/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
-		FONT_REGX = /\?\[(\d+(.*?))\]\{(.*?)\}/,
+		FONT_REGX = /\?\[((\d+)(.*?))\]\{(.*?)\}/,
 		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/,
 		SUP_SUB_REGX = /~(\^|!)\{(.*?)\}/;
 
@@ -46,12 +46,12 @@ function replaceColor (input) {
 
 function replaceFont (input) {
 	while ((matched = FONT_REGX.exec(input)) !== null) {
-		let [ proto, size, unit, value ] = matched;
+		let [ proto, ,size, unit, value ] = matched;
 
 		unit = unitSet.has[unit.toLowerCase()] ? unit : Unit_PX;
 
 		value = inlineReplace(value);
-		const output = `<span style="font-size:${size};">${value}</span>`;
+		const output = `<span style="font-size:${size}${unit};">${value}</span>`;
 
 		input = input.replace(proto, output);
 	}
