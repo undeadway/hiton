@@ -1,3 +1,6 @@
+const { aspectBase } = require("./../../lib/utils");
+const aspect = aspectBase("heading");
+
 const { Char } = JsConst;
 
 const BASIC_H6_REGX = /###### (.*?)(\n|$)/g,
@@ -51,8 +54,8 @@ function highMode() {
             const id = thisLevel.join(Char.UNDER_SOURCE);
 			lastLevel = level;
 	
-			const output = `\n<p id="hiton-heading__${id}" class="hiton-counting-mode-heading">${chapter}. ${text}</p>\n`;
-			input = input.replace(proto, output);
+			const heading = `\n<p id="hiton-heading-id__${id}" class="hiton-counting-mode-heading">${chapter}. ${text}</p>\n`;
+			input = aspect.replace(input, proto, heading);
         }
 
         return input;
@@ -60,11 +63,15 @@ function highMode() {
 }
 
 function replaceHeading (options) {
-    if (options.heading.toUpperCase() === COUNTING_MODE) {
-        return  highMode();
-    } else {
-        return basicMode;
+
+    _highMode = highMode();
+
+    aspect.before = (input) => {
+        const method = (options.heading.toUpperCase() === COUNTING_MODE) ? _highMode : basicMode;
+        return method(input);
     }
+
+    return aspect;
 }
 
 module.exports = exports = replaceHeading;

@@ -70,22 +70,26 @@ const decodeHtmlTag = (str) => {
  * 2. replace 插片内容的替换方法，不需要子类重写
  * 3. after 后处理，将所有插片内容还原为 html 可显示内容
  */
-const aspectBase = (key) => {
+const aspectBase = (aspcetName) => {
 
-	const spects = [];
+	const spects = {};
 
 	return {
 		// before 方法需要每个子类自行实现
-		replace: (input, part, str) => {
+		replace: (input, proto, value) => {
 
-			input = input.replace(part, `{${key}~${spects.length}}`);
-			spects.push(str);
+			let code = (Date.now() * Math.random()).toString();
+			code = code.replace(".", "--");
+
+			const key = `${aspcetName}~${code}`;
+			input = input.replace(proto, key);
+			spects[key] = value;
 
 			return input;
 		},
 		after: (input) => {
-			Array.forEach(spects, (i, e) => {
-				input = input.replace(`{${key}~${i}}`, e);
+			Object.forEach(spects, (key, val) => {
+				input = input.replace(key, val);
 			});
 
 			return input;

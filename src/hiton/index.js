@@ -10,7 +10,6 @@ const TWO_LF = `${LF}${LF}`;
 const replaceSrcLinks = require("./modules/src-links");
 const replaceImages = require("./modules/image");
 const replaceAlign = require("./modules/align");
-const replaceEscapers = require("./modules/escaper");
 const replaceQuote = require("./modules/quote");
 const replaceList = require("./modules/list");
 const replaceHeading = require("./modules/heading");
@@ -19,50 +18,53 @@ const replaceReference = require("./modules/reference");
 
 const replaceInline = require("./modules/inline");
 
-module.exports = require("./base").create((input, options) => {
+module.exports = exports = require("./base").create((input, options) => {
 
 	try {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
-		const _replaceTable = replaceTable();
+
+		// 因为复杂结构可能含有 `__` 等字符，所以全部由 aspcet 形式来实现
 		const _replaceHeading = replaceHeading(options);
-		const _replaceImages = replaceImages(options);
+		const _replaceSrcLinks = replaceSrcLinks(); // 外部连接（链接、邮箱）
+		const _replaceImages = replaceImages(options); // 图片（图片、图片引用）
+		const _replaceTable = replaceTable(); // 表格（表格、表格定义、表格引用）
+		const _replaceQuote = replaceQuote(); // 引用
+		const _replaceList = replaceList(); // 列表
+		const _replaceAlign = replaceAlign(); // 对齐
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
 
 			string = LF + string + LF;
 
-			let link = replaceSrcLinks(); // 外部连接（链接、邮箱）
-			let align = replaceAlign(); // 对齐
-			// let escape = replaceEscapers(); // 转义字符
+			string = _replaceImages.before(string);
+			string = _replaceSrcLinks.before(string);
+			string = _replaceTable.before(string);
+			string = _replaceHeading.before(string);
+			string = _replaceList.before(string);
+			string = _replaceAlign.before(string);
+			string = _replaceQuote.before(string);
 
-			string = link.before(string);
-			string = align.before(string);
-			// string = escape.before(string);
-	
 			string = replaceInline(string); // 行内设置
-			string = replaceQuote(string); // 引用
-			string = replaceList(string); // 列表
+
+			string = _replaceQuote.after(string);
+			string = _replaceAlign.after(string);
+			string = _replaceList.after(string);
+			string = _replaceHeading.after(string);
+			string = _replaceTable.after(string);
+			string = _replaceSrcLinks.after(string);
+			string = _replaceImages.after(string);
 	
-			string = _replaceHeading(string);// 头部
-			string = _replaceTable(string); // 表格（表格、表格引用）
-			string = _replaceImages(string); // 图像（图像、图像引用）
-	
-			// string = replaceReference(string); // 参考链接
-	
-			string = align.after(string);
-			string = link.after(string);
+			// string = replaceReference(string); // TODO 参考链接
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
 			string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
-
 
 			output.push(string);
 		});
 		
 		input =  input = "<p>" + output.join("</p><p>") + "</p>";
-	// input = replaceP(input); // 段落
 	} catch(err) {
 		console.log(err);
 	}

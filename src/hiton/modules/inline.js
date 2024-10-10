@@ -14,7 +14,7 @@ const Unit_PX = Unit.PX;
 
 const MarkMap = {
 	"^": Tag.SUP,
-	"!": Tag.SUB
+	"+": Tag.SUB
 };
 
 const 	ITALIC_REGX = /_((.|\s)*?)_/g,
@@ -24,7 +24,7 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
 		FONT_REGX = /\?\[((\d+)(.*?))\]\{(.*?)\}/,
 		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/,
-		SUP_SUB_REGX = /~(\^|!)\{(.*?)\}/;
+		SUP_SUB_REGX = /~(\^|\+)\{(.*?)\}/;
 
 const ITALIC_STR = "<em>$1</em>",
 		BOLD_STR = "<strong>$1</strong>",

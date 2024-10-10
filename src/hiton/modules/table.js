@@ -1,4 +1,6 @@
 const replaceInline = require("./inline");
+const { aspectBase } = require("./../../lib/utils");
+const aspect = aspectBase("table");
 
 const { Char: { Space } } =JsConst;
 const TABLE_REGX = /(\|(.)+\|\n)+/,
@@ -16,6 +18,7 @@ const TR_JOIN = "</tr><tr>",
 	TABLE_START = `<table class="hiton-table">`,
 	TABLE_END = "</table>";
 
+
 const replaceTable = () => {
 
 	const tableMapping = {};
@@ -29,13 +32,13 @@ const replaceTable = () => {
 		return count;
 	}
 
-	return (input) => {
+	aspect.before = (input) => {
 		// 表格
 		while ((matches = input.match(TABLE_REGX)) !== null) {
-			const part = matches[0], output = [];
+			const proto = matches[0], output = [];
 			let tHead = "";
 
-			Array.forEach(part.split(Space.LF), (index, line) => {
+			Array.forEach(proto.split(Space.LF), (index, line) => {
 				if (String.isEmpty(line)) return;
 				line = line.slice(1, line.length - 1); // 去掉最开始和最后的 |
 				line = line.split(VERTICAL_BAR).map(td => {
@@ -53,7 +56,8 @@ const replaceTable = () => {
 			});
 
 			let table = TABLE_START + tHead + TBODY_START + output.join(TR_JOIN) + TBODY_END + TABLE_END;
-			input = input.replace(part, table);
+
+			input = aspect.replace(input, proto, table);
 		}
 
 		// 表格声明
@@ -61,20 +65,22 @@ const replaceTable = () => {
 			const [ proto, name ] = matched;
 			const count = calcMapCount(name);
 
-			const output = `<div id="hiton-table-id__${count}" class="hiton-table-define">表：${name}</div>`;
-			input = input.replace(proto, output);
+			const define = `<div id="hiton-table-id__${count}" class="hiton-table-define">表：${name}</div>`;
+			input = aspect.replace(input, proto, define);
 		}
 		// 表格引用
 		while ((matched = TABLE_CALLING_REGX.exec(input)) !== null) {
 			const [ proto, name ] = matched;
 			const count = calcMapCount(name);
 
-			const output = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#hiton-table-id__${count}">表：${name}</a>`;
-			input = input.replace(proto, output);
+			const calling = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#hiton-table-id__${count}">表：${name}</a>`;
+			input = aspect.replace(input, proto, calling);
 		}
 
 		return input;
 	}
+
+	return aspect;
 }
 
 module.exports = exports = replaceTable;
