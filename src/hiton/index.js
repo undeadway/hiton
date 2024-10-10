@@ -1,5 +1,11 @@
 const { COMMENT_REGX, BLANK } = require("./../lib/constants");
-const { HTML: { Tag } } = JsConst;
+const { Char: { Space }, HTML: { Tag } } = JsConst;
+
+const NL_REGX = /  \n/g,
+		N_REGX = /\n/g;
+const BR_TAG = "<br />";
+const LF = Space.LF;
+const TWO_LF = `${LF}${LF}`;
 
 const replaceSrcLinks = require("./modules/src-links");
 const replaceImages = require("./modules/image");
@@ -12,36 +18,52 @@ const replaceReference = require("./modules/reference");
 
 const basicReplace = require("./modules/basic");
 
-module.exports = require("./base").create((input) => {
+const hitOn = module.exports = require("./base").create((input) => {
 
-	input = input.replace(/\r\n/g, "\n");
+	try {
+		input = input.replace(/\r\n/g, LF);
+		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 
-	input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
+		const output = [];
+		Array.forEach(input.split(TWO_LF), (index, string) => {
 
-	let link = replaceSrcLinks(); // 外部连接（链接、邮箱）
-	// let image = replaceImages(); // 图像（图像、图像引用）
-	let align = replaceAlign(); // 对齐
-	// let escape = replaceEscapers(); // 转义字符
+			string = LF + string + LF;
 
-	// input = image.before(input);
-	input = link.before(input);
-	input = align.before(input);
-	// input = escape.before(input);
+			let link = replaceSrcLinks(); // 外部连接（链接、邮箱）
+			// let image = replaceImages(); // 图像（图像、图像引用）
+			let align = replaceAlign(); // 对齐
+			// let escape = replaceEscapers(); // 转义字符
+	
+			// string = image.before(string);
+			string = link.before(string);
+			string = align.before(string);
+			// string = escape.before(string);
+	
+			string = basicReplace(string); // 调用公共替换
+	
+			string = replaceQuote(string); // 引用
+			// string = replaceList(string); // 列表
+			string = replaceTable(hitOn, string); // 表格（表格、表格引用）
+	
+			// string = replaceReference(string); // 参考链接
+	
+			string = align.after(string);
+			// string = image.after(string);
+			// string = escape.after(string);
+			string = link.after(string);
 
-	input = basicReplace(input); // 调用公共替换
+			string = string.replace(NL_REGX, BR_TAG); // 单行换行
+			string = string.replace(N_REGX, Space.SPACE);// \n => 一个空白
 
-	input = replaceQuote(input); // 引用
-	// input = replaceList(input); // 列表
-	// input = replaceTable(input); // 表格（表格、表格引用）
 
-	// input = replaceReference(input); // 参考链接
-
-	input = align.after(input);
-	// input = image.after(input);
-	// input = escape.after(input);
-	input = link.after(input);
-
+			output.push(string);
+		});
+		
+		input =  input = "<p>" + output.join("</p><p>") + "</p>";
 	// input = replaceP(input); // 段落
+	} catch(err) {
+		console.log(err);
+	}
 
 	return input;
 }, {

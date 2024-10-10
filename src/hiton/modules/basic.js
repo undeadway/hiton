@@ -36,11 +36,11 @@ const ITALIC_STR = "<em>$1</em>",
 		BOLD_STR = "<strong>$1</strong>",
 		DEL_LINE_STR = "<del>$1</del>",
 		INS_LINE_STR = "<ins>$1</ins>",
-		H6_STR = "<h1 class=\"h6\">$1</h1>",
-		H5_STR = "<h1 class=\"h5\">$1</h1>",
-		H4_STR = "<h1 class=\"h4\">$1</h1>",
-		H3_STR = "<h1 class=\"h3\">$1</h1>",
-		H2_STR = "<h1 class=\"h2\">$1</h1>",
+		H6_STR = "<h6 class=\"h6\">$1</h6>",
+		H5_STR = "<h5 class=\"h5\">$1</h5>",
+		H4_STR = "<h4 class=\"h4\">$1</h4>",
+		H3_STR = "<h3 class=\"h3\">$1</h3>",
+		H2_STR = "<h2 class=\"h2\">$1</h2>",
 		H1_STR = "<h1 class=\"h1\">$1</h1>";
 
 function replaceColor (input) {

@@ -1,9 +1,6 @@
 
 const { aspectBase, decodeHtmlTag, compireObjectToXmlAtruibute } = require("./../lib/utils");
 const { Char: { Angle }, XmlEntity, HTML: { Tag } } = JsConst;
-
-const BR_TAG = "<br />";
-const NL_REGX = /\n/g;
 const PRE_TAG = Tag.PRE;
 
 function replaceObjects(str, arg) {
@@ -129,8 +126,6 @@ module.exports = {
 						str = obj(str);
 					});
 				}
-
-				str = str.replace(NL_REGX, BR_TAG); // 单行换行
 
 				return replaceURI(str);
 			}
