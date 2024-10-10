@@ -16,7 +16,7 @@ const TR_JOIN = "</tr><tr>",
 	TABLE_START = `<table class="hiton-table">`,
 	TABLE_END = "</table>";
 
-const replaceTable = (hitOn) => {
+const replaceTable = () => {
 
 	const tableMapping = {};
 	let tableCount = 1;
@@ -50,7 +50,7 @@ const replaceTable = (hitOn) => {
 				}
 			});
 
-			let table = TABLE_START + tHead + TBODY_START + output.join(TR_JOIN) + TBODY_END; + TABLE_END;
+			let table = TABLE_START + tHead + TBODY_START + output.join(TR_JOIN) + TBODY_END + TABLE_END;
 			input = input.replace(part, table);
 		}
 
