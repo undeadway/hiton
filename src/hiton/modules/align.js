@@ -5,7 +5,7 @@
  */
 const replaceInline = require("./inline");
 const { aspectBase } = require("./../../lib/utils");
-const aspect = aspectBase("table");
+const aspect = aspectBase("align");
 
 const 	CENTER_ALIGN_REGX = /\n>>((.|\s)+?)<<\n/,
 		LEFT_ALIGN_REGX = /\n\|\:((.|\s)+?)<<\n/,
