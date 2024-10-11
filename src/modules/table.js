@@ -55,7 +55,7 @@ const replaceTable = () => {
 			const [ proto, name ] = matched;
 			const count = calcMapCount(name);
 
-			const define = `<div id="tid__${count}" class="hiton-table-define">表：${name}</div>`;
+			const define = `<div id="t__${count}" class="hiton-table-define">表：${name}</div>`;
 			input = aspect.replace(input, proto, define);
 		}
 		// 表格引用
@@ -63,7 +63,7 @@ const replaceTable = () => {
 			const [ proto, name ] = matched;
 			const count = calcMapCount(name);
 
-			const calling = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#tid__${count}">表：${name}</a>`;
+			const calling = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#t__${count}">表：${name}</a>`;
 			input = aspect.replace(input, proto, calling);
 		}
 

@@ -18,7 +18,7 @@ function replaceImages (options) {
 			let [ proto , name, , src ] = matched;
 			const count = calcMapCount(name);
 
-			let img = `<div id="pid__${count}" class="hiton-image hiton-align__${imageAlign}"><img src="${src}" />`;
+			let img = `<div id="p__${count}" class="hiton-image hiton-align__${imageAlign}"><img src="${src}" />`;
 			img += `<div class="hiton-image-name">图：${name}</div></div>`;
 
 			input = aspect.replace(input, proto, img);
@@ -28,7 +28,7 @@ function replaceImages (options) {
 			let [ proto, name ] = matched;
 			const count = calcMapCount(name);
 
-			const calling = `<div class="hiton-image-calling"><a href="#pid__${count}">图：${name}</a></div>`;
+			const calling = `<div class="hiton-image-calling"><a href="#p__${count}">图：${name}</a></div>`;
 			input = aspect.replace(input, proto, calling);
 		}
 

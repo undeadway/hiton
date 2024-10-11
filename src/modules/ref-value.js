@@ -21,7 +21,7 @@ function replaceRefValue () {
 			const count = calcMapCount(label);
 
 			text = replaceInline(text);
-			const valRef = `<div id="rvid__${count}""><a href="#rsid__${count}">${label}</a>：${text} <a href="#rsid__${count}">↰</a></div>`;
+			const valRef = `<div id="rv__${count}""><a href="#rs__${count}">${label}</a>：${text} <a href="#rs__${count}">↰</a></div>`;
 
 			input = aspect.replace(input, proto, valRef);
 		}

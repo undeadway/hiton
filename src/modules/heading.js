@@ -54,7 +54,7 @@ function highMode() {
 			const id = thisLevel.join(Char.UNDER_SOURCE);
 			lastLevel = level;
 	
-			const heading = `\n<p id="hid__${id}" class="hiton-counting-mode-heading">${chapter}. ${text}</p>\n`;
+			const heading = `\n<p id="h__${id}" class="hiton-counting-mode-heading">${chapter}. ${text}</p>\n`;
 			input = aspect.replace(input, proto, heading);
 		}
 
