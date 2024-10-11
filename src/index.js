@@ -17,52 +17,9 @@ const replaceTable = require("./modules/table");
 const replaceRefValue = require("./modules/ref-value");
 const replaceInlineCode = require("./modules/inline-code");
 const reaplceEscapes = require("./modules/esacpes");
-
 const replaceInline = require("./modules/inline");
 
-function create (parser) {
-	return {
-		create: () => {
-
-			function replaceURI(str) {
-
-				try {
-					return decodeURIComponent(str);// 最后的转义出处理
-				} catch (e) {
-					// 如果出错，就当不存在，直接输出原始内容
-					return str;
-				}
-			}
-		
-			return {
-				parse: (str, options, plugIns = []) => {
-
-					Array.forEach(plugIns, (index, aspect) => { // 定制插片前处理
-						str = aspect.before(str);
-						aspects.push(aspect);
-					});
-
-					str = parser(str, options);
-
-					// 插片后处理
-					Array.forEach(aspects, (index, aspcet) => {
-						str = aspcet.after(str);
-					});
-
-					return replaceURI(str);
-				}
-			};
-		},
-		createAspect : (name, before) => {
-			const aspcet = aspectBase(name);
-			aspcet.before = before;
-			return aspcet;
-		}
-	}
-};
-
-
-module.exports = exports = create((input, options) => {
+function parser (input, options) {
 	try {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
@@ -120,4 +77,43 @@ module.exports = exports = create((input, options) => {
 	}
 
 	return input;
-});
+}
+
+module.exports = exports = {
+	create: () => {
+
+		function replaceURI(str) {
+
+			try {
+				return decodeURIComponent(str);// 最后的转义出处理
+			} catch (e) {
+				// 如果出错，就当不存在，直接输出原始内容
+				return str;
+			}
+		}
+	
+		return {
+			parse: (str, options, plugIns = []) => {
+
+				Array.forEach(plugIns, (index, aspect) => { // 定制插片前处理
+					str = aspect.before(str);
+					aspects.push(aspect);
+				});
+
+				str = parser(str, options);
+
+				// 插片后处理
+				Array.forEach(aspects, (index, aspcet) => {
+					str = aspcet.after(str);
+				});
+
+				return replaceURI(str);
+			}
+		};
+	},
+	createAspect : (name, before) => {
+		const aspcet = aspectBase(name);
+		aspcet.before = before;
+		return aspcet;
+	}
+};
