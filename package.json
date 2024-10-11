@@ -23,7 +23,9 @@
     "coralian": "git+https://gitee.com/undeadway/coralian#dev"
   },
   "devDependencies": {
-    "modell-highlighter": "git+https://gitee.com/undeadway/modell-highlighter#dev"
+    "modell-highlighter": "git+https://gitee.com/undeadway/modell-highlighter#dev",
+		"webpack": "^5.91.0",
+		"webpack-cli": "^5.1.4"
   },
   "homepage": "http://tech-demo.waygc.net/toys/?hiton",
   "author": "hzwaygc@gmail.com",
