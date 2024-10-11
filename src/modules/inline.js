@@ -25,6 +25,7 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		BOLD_REGX = /\*\*((.|\s)*?)\*\*/g,
 		DEL_LINE_REGX = /~~((.|\s)*?)~~/g,
 		INS_LINE_REGX = /==((.|\s)*?)==/g,
+		MARK_REGX = /!!((.|\s)*?)!!/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
 		FONT_REGX = /\?\[((\d+)(.*?))\]\{(.*?)\}/,
 		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/,
@@ -34,7 +35,8 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 const ITALIC_STR = "<em>$1</em>",
 		BOLD_STR = "<strong>$1</strong>",
 		DEL_LINE_STR = "<del>$1</del>",
-		INS_LINE_STR = "<ins>$1</ins>";
+		INS_LINE_STR = "<ins>$1</ins>",
+		MARK_STR = "<mark>$1</mark>";
 
 function replaceColor (input) {
 	while ((matched = COLOR_REGX.exec(input)) !== null) {
@@ -119,6 +121,7 @@ function replaceInline(input) {
 	input = input.replace(BOLD_REGX, BOLD_STR); // 粗体字
 	input = input.replace(DEL_LINE_REGX, DEL_LINE_STR); // 删除线
 	input = input.replace(INS_LINE_REGX, INS_LINE_STR); // 下划线
+	input = input.replace(MARK_REGX, MARK_STR); // 文本高亮
 
 	input = replaceColor(input); // 颜色
 	input = replaceFont(input); // 字号
