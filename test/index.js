@@ -12,8 +12,8 @@ const html = instance.parse(file);
 
 const output = `<html>
 <head>
-<link rel="stylesheet" href="./../dist/modell-markedjs-plus.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<link rel="stylesheet" href="./../demo/hiton.css">
 </head>
 <body>
 ${html}
