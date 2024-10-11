@@ -1,4 +1,4 @@
-const { aspectBase } = require("./..//lib/utils");
+const { aspectBase } = require("./../lib/utils");
 let inlineCode = aspectBase("inlinecode");
 
 const INLINE_CODE_REGX = /`([^`]+?)`/;

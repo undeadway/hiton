@@ -1,4 +1,4 @@
-const { aspectBase } = require("./..//lib/utils");
+const { aspectBase } = require("./../lib/utils");
 let esacpes = aspectBase("esacpes");
 
 const ESCAPER_REGX = /\\(\S)/;

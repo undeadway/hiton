@@ -1,5 +1,5 @@
 const replaceInline = require("./inline");
-const { aspectBase } = require("./..//lib/utils");
+const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("table");
 
 const { Char: { Space } } =JsConst;

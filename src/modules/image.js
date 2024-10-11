@@ -1,4 +1,4 @@
-const { aspectBase } = require("./..//lib/utils");
+const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("image");
 
 const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/;

@@ -1,5 +1,5 @@
-const { COMMENT_REGX, BLANK } = require(".//lib/constants");
-const { Char: { Space }, HTML: { Tag } } = JsConst;
+const { COMMENT_REGX, BLANK } = require("./lib/constants");
+const { Char: { Space } } = JsConst;
 
 const NL_REGX = /  \n/g,
 		N_REGX = /\n/g;
