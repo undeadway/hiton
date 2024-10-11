@@ -47,11 +47,19 @@
 .hiton-span-margin,
 .hiton-ref-value a {
 	display: inline-block;
-	margin: auto 3px;
+	margin: auto 4px;
 }
 
 .hiton fieldset {
 	border: 1px solid #909399;
     background: #ebedf0;
 	margin: 10px 5px;
+}
+
+.hiton fieldset legend {
+	font-weight: bold;
+}
+
+.hiton ruby {
+	margin: auto 4px;
 }
