@@ -78,7 +78,7 @@ function parser (input, options) {
 		console.log(err);
 	}
 
-	return input;
+	return `<div class="hiton">${input}</div>`;
 }
 
 module.exports = exports = {
