@@ -24,7 +24,8 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		COLOR_REGX = /#\[([0-9a-fA-F]{6})\]\{(.*?)\}/,
 		FONT_REGX = /\?\[((\d+)(.*?))\]\{(.*?)\}/,
 		PHONETIC_REGX = /::\[(.*?)\]\{(.*?)\}/,
-		SUP_SUB_REGX = /~(\^|\+)\{(.*?)\}/;
+		SUP_SUB_REGX = /~(\^|\+)\{(.*?)\}/,
+		REF_USING_REGX = /\[\^(.+)\]/;
 
 const ITALIC_STR = "<em>$1</em>",
 		BOLD_STR = "<strong>$1</strong>",
@@ -87,8 +88,22 @@ function replaceSupSub(input) {
 	return input;
 }
 
+// 因为参考的使用属于行内属性，所以就把参考的使用放在这里了
+function replaceRefUsing(input) {
+	while((matched = REF_USING_REGX.exec(input)) !== null) {
+		const [ proto, label ] = matched; 
+		const count = calcMapCount(label);
+
+		const usingRef = `<a id="hiton-ref-using-id__${count}" href="#hiton-ref-val-id__${count}"><sup>${label}</sup></a>`;
+
+		input = input.replace(proto, usingRef);
+	}
+
+	return input;
+}
+
 /**
- * 这里的替换在任何位置都可以用到，比如：
+ * 这里的替换在任何位置都是行内属性
  * 链接中的文字
  * 对齐的文字
  */
@@ -105,6 +120,7 @@ function replaceInline(input) {
 	input = replaceFont(input); // 字号
     input = replacePhonetic(input); // 注音
 	input = replaceSupSub(input); // 上下标
+	input = replaceRefUsing(input); // 参考（引用）
 
 	return input;
 }

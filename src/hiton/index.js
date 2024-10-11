@@ -14,7 +14,7 @@ const replaceQuote = require("./modules/quote");
 const replaceList = require("./modules/list");
 const replaceHeading = require("./modules/heading");
 const replaceTable = require("./modules/table");
-const replaceReference = require("./modules/reference");
+const replaceRefValue = require("./modules/ref-value");
 
 const replaceInline = require("./modules/inline");
 
@@ -32,7 +32,7 @@ module.exports = exports = require("./base").create((input, options) => {
 		const _replaceQuote = replaceQuote(); // 引用
 		const _replaceList = replaceList(); // 列表
 		const _replaceAlign = replaceAlign(); // 对齐
-		const _replaceReference = replaceReference();
+		const _replaceRefValue = replaceRefValue(); // 参考（值）
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
@@ -45,13 +45,13 @@ module.exports = exports = require("./base").create((input, options) => {
 			string = _replaceTable.before(string);
 			string = _replaceHeading.before(string);
 			string = _replaceList.before(string);
-			string = _replaceReference.before(string);
+			string = _replaceRefValue.before(string);
 			string = _replaceQuote.before(string);
 
 			string = replaceInline(string); // 行内设置
 
 			string = _replaceQuote.after(string);
-			string = _replaceReference.after(string);
+			string = _replaceRefValue.after(string);
 			string = _replaceList.after(string);
 			string = _replaceHeading.after(string);
 			string = _replaceTable.after(string);
