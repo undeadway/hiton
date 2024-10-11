@@ -1,8 +1,6 @@
-const { aspectBase } = require("./../lib/utils");
+const { aspectBase, getMappingCount } = require("./../lib/utils");
 const aspect = aspectBase("image");
-
-const calcMappingCount = require("./../lib/cal-mapping-count");
-const calcMapCount = calcMappingCount.get("images");
+const calcMapCount = getMappingCount("images");
 
 const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/;
 const IMAGE_CALLING_REGX = /!\{((.|\s)*?)\}/;

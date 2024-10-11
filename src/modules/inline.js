@@ -1,6 +1,6 @@
 
-const calcMappingCount = require("./../lib/cal-mapping-count");
-const calcMapCount = calcMappingCount.get("refrence");
+const { getMappingCount } = require("./../lib/utils");
+const calcMapCount = getMappingCount("refrence");
 
 const { HTML: { Unit, Tag } } = JsConst;
 

@@ -1,9 +1,7 @@
 const replaceInline = require("./inline");
-const { aspectBase } = require("./../lib/utils");
+const { aspectBase, getMappingCount } = require("./../lib/utils");
 const aspect = aspectBase("table");
-
-const calcMappingCount = require("./../lib/cal-mapping-count");
-const calcMapCount = calcMappingCount.get("table");
+const calcMapCount = getMappingCount("table");
 
 const { Char: { Space } } =JsConst;
 const TABLE_REGX = /(\|(.)+\|\n)+/,

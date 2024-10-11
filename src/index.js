@@ -1,5 +1,4 @@
-const { aspectBase } = require("./lib/utils");
-const calcMappingCount = require("./lib/cal-mapping-count");
+const { aspectBase, getMappingCount } = require("./lib/utils");
 
 const { COMMENT_REGX, BLANK } = require("./lib/constants");
 const { Char: { Space: { LF } } } = JsConst;
@@ -118,6 +117,6 @@ module.exports = exports = {
 		return aspcet;
 	},
 	getMappingCount (name) {
-		return calcMappingCount.get(name);
+		return getMappingCount(name);
 	}
 };
