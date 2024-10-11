@@ -20,6 +20,7 @@ const replaceRefValue = require("./modules/ref-value");
 const replaceInlineCode = require("./modules/inline-code");
 const reaplceEscapes = require("./modules/esacpes");
 const replaceInline = require("./modules/inline");
+const replavePreStruct = require("./modules/pre-struct");
 
 function parser (input, options) {
 	try {
@@ -37,6 +38,7 @@ function parser (input, options) {
 		const _replaceRefValue = replaceRefValue(); // 参考（值）
 		const _replaceInlineCode = replaceInlineCode(); // 行内代码
 		const _reaplceEscapes = reaplceEscapes(); // 转义字符
+		const _replavePreStruct = replavePreStruct(); // 预定义结构
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
@@ -52,11 +54,13 @@ function parser (input, options) {
 			string = _replaceHeading.before(string);
 			string = _replaceList.before(string);
 			string = _replaceRefValue.before(string);
+			string = _replavePreStruct.before(string);
 			string = _replaceQuote.before(string);
 
 			string = replaceInline(string); // 行内设置
 
 			string = _replaceQuote.after(string);
+			string = _replavePreStruct.after(string);
 			string = _replaceRefValue.after(string);
 			string = _replaceList.after(string);
 			string = _replaceHeading.after(string);
@@ -68,7 +72,7 @@ function parser (input, options) {
 			string = _reaplceEscapes.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
-			string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
+			// string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
 
 			output.push(string);
 		});
