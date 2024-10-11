@@ -4,7 +4,7 @@
  * 右对齐  >>右对齐:|
  */
 const replaceInline = require("./inline");
-const { aspectBase } = require("./../../lib/utils");
+const { aspectBase } = require("./..//lib/utils");
 const aspect = aspectBase("align");
 
 const 	CENTER_ALIGN_REGX = /\n>>((.|\s)+?)<<\n/,

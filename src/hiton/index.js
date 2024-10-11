@@ -1,4 +1,4 @@
-const { COMMENT_REGX, BLANK } = require("./../lib/constants");
+const { COMMENT_REGX, BLANK } = require(".//lib/constants");
 const { Char: { Space }, HTML: { Tag } } = JsConst;
 
 const NL_REGX = /  \n/g,
@@ -15,11 +15,54 @@ const replaceList = require("./modules/list");
 const replaceHeading = require("./modules/heading");
 const replaceTable = require("./modules/table");
 const replaceRefValue = require("./modules/ref-value");
+const replaceInlineCode = require("./modules/inline-code");
+const reaplceEscapes = require("./modules/esacpes");
 
 const replaceInline = require("./modules/inline");
 
-module.exports = exports = require("./base").create((input, options) => {
+function create (parser) {
+	return {
+		create: () => {
 
+			function replaceURI(str) {
+
+				try {
+					return decodeURIComponent(str);// 最后的转义出处理
+				} catch (e) {
+					// 如果出错，就当不存在，直接输出原始内容
+					return str;
+				}
+			}
+		
+			return {
+				parse: (str, options, plugIns = []) => {
+
+					Array.forEach(plugIns, (index, aspect) => { // 定制插片前处理
+						str = aspect.before(str);
+						aspects.push(aspect);
+					});
+
+					str = parser(str, options);
+
+					// 插片后处理
+					Array.forEach(aspects, (index, aspcet) => {
+						str = aspcet.after(str);
+					});
+
+					return replaceURI(str);
+				}
+			};
+		},
+		createAspect : (name, before) => {
+			const aspcet = aspectBase(name);
+			aspcet.before = before;
+			return aspcet;
+		}
+	}
+};
+
+
+module.exports = exports = create((input, options) => {
 	try {
 		input = input.replace(/\r\n/g, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
@@ -33,12 +76,16 @@ module.exports = exports = require("./base").create((input, options) => {
 		const _replaceList = replaceList(); // 列表
 		const _replaceAlign = replaceAlign(); // 对齐
 		const _replaceRefValue = replaceRefValue(); // 参考（值）
+		const _replaceInlineCode = replaceInlineCode(); // 行内代码
+		const _reaplceEscapes = reaplceEscapes(); // 转义字符
 
 		const output = [];
 		Array.forEach(input.split(TWO_LF), (index, string) => {
 
 			string = LF + string + LF;
 
+			string = _reaplceEscapes.before(string);
+			string = _replaceInlineCode.before(string);
 			string = _replaceImages.before(string);
 			string = _replaceAlign.before(string);
 			string = _replaceSrcLinks.before(string);
@@ -58,8 +105,8 @@ module.exports = exports = require("./base").create((input, options) => {
 			string = _replaceSrcLinks.after(string);
 			string = _replaceAlign.after(string);
 			string = _replaceImages.after(string);
-	
-			// string = replaceReference(string); // TODO 参考链接
+			string = _replaceInlineCode.after(string);
+			string = _reaplceEscapes.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
 			string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
@@ -73,30 +120,4 @@ module.exports = exports = require("./base").create((input, options) => {
 	}
 
 	return input;
-}, {
-	object: [
-		// 预定义结构
-		{
-			regexp: /\[\[((.|\s)*?)\]\]/,
-			tag: {
-				start: "[[",
-				end: "]]",
-				html: Tag.PRE,
-				attrs: {
-					"class": "pre"
-				}
-			}
-		}
-	],
-	aspect: {
-		// 行内代码
-		simpleLineCode: {
-			regexp: /`([^`]+?)`/,
-			tag: {
-				start: "`",
-				end: "`"
-			},
-			html: Tag.CODE
-		}
-	}
 });

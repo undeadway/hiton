@@ -7,7 +7,7 @@
  * <hzwaygc@gmail.com> => <a href="mailto:hzwaygc@gmail.com">hzwaygc@gmail.com</a>
  */
 const replaceInline = require("./inline");
-const { aspectBase } = require("./../../lib/utils");
+const { aspectBase } = require("./..//lib/utils");
 const aspect = aspectBase("links");
 
 const LINK_REGX = /\[((.|\s)*?)\]\(((.|\s)*?)( "(.*?)")*\)/;

@@ -1,4 +1,4 @@
-const { aspectBase } = require("./../../lib/utils");
+const { aspectBase } = require("./..//lib/utils");
 const aspect = aspectBase("quote");
 
 const { Char: { Parenthe, Space: { LF } } } = JsConst;

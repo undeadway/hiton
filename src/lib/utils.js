@@ -97,24 +97,11 @@ const aspectBase = (aspcetName) => {
 	}
 };
 
-const compireObjectToXmlAtruibute = (input) => {
-
-	let str = String.BLANK;
-
-	for (let k in input) {
-		let v = input[k];
-		str += ` ${k}="${v}"`;
-	}
-
-	return str;
-}
-
 module.exports = exports = {
 	checkNumberIsNotEmpty,
 	checkObjectIsNotEmpty,
 	isBbrowser,
 	getFormattedDate,
-    compireObjectToXmlAtruibute,
     aspectBase,
     decodeHtmlTag
 };

@@ -6,7 +6,7 @@
  * [^注1]: => <div>注1：balaba <a hre="#c-a-1">返回</a></div>
  */
 const replaceInline = require("./inline");
-const { aspectBase } = require("./../../lib/utils");
+const { aspectBase } = require("./..//lib/utils");
 const aspect = aspectBase("reference");
 
 const REF_VALUE_REGX = /\n\[\^(.+)\]: (.+)\n/;
