@@ -1,11 +1,11 @@
 const { aspectBase, getMappingCount } = require("./lib/utils");
 
-const { COMMENT_REGX, BLANK } = require("./lib/constants");
 const { Char: { Space: { LF } } } = JsConst;
 
 const NL_REGX = /  \n/g,
 		N_REGX = /\n/g,
-		NEW_LINE_REGX = /\r\n/g;
+		NEW_LINE_REGX = /\r\n/g,
+		COMMENT_REGX = /\/\*((.|\s)*?)\*\//g;
 const BR_TAG = "<br />";
 const TWO_LF = `${LF}${LF}`;
 
@@ -24,7 +24,7 @@ const replaceInline = require("./modules/inline");
 function parser (input, options) {
 	try {
 		input = input.replace(NEW_LINE_REGX, LF);
-		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
+		input = input.replace(COMMENT_REGX, String.BLANK); // 去掉注释
 
 		// 因为复杂结构可能含有 `__` 等字符，所以全部由 aspcet 形式来实现
 		const _replaceHeading = replaceHeading(options);
