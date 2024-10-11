@@ -52,7 +52,7 @@
 
 .hiton fieldset {
 	border: 1px solid #909399;
-    background: #ebedf0;
+	background: #ebedf0;
 	margin: 10px 5px;
 }
 
@@ -62,4 +62,17 @@
 
 .hiton ruby {
 	margin: auto 4px;
+}
+
+.hiton li {
+	padding: 5px 0px;
+}
+
+.hiton a {
+	color: #409EFF;
+	text-decoration: underline;
+}
+
+.hiton a:hover {
+	color: #93bbef;
 }
