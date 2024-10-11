@@ -2,6 +2,9 @@ const replaceInline = require("./inline");
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("table");
 
+const calcMappingCount = require("./../lib/cal-mapping-count");
+const calcMapCount = calcMappingCount.get("table");
+
 const { Char: { Space } } =JsConst;
 const TABLE_REGX = /(\|(.)+\|\n)+/,
 	VERTICAL_BAR = /\|/g,
@@ -20,17 +23,6 @@ const TR_JOIN = "</tr><tr>",
 
 
 const replaceTable = () => {
-
-	const tableMapping = {};
-	let tableCount = 1;
-
-	function calcMapCount(name) {
-		let count = tableMapping[name];
-		if (!count) {
-			count = tableMapping[name] = tableCount++;
-		}
-		return count;
-	}
 
 	aspect.before = (input) => {
 		// 表格

@@ -1,6 +1,9 @@
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("image");
 
+const calcMappingCount = require("./../lib/cal-mapping-count");
+const calcMapCount = calcMappingCount.get("images");
+
 const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/;
 const IMAGE_CALLING_REGX = /!\{((.|\s)*?)\}/;
 
@@ -10,17 +13,6 @@ function replaceImages (options) {
 
     let imageAlign = options.image ? options.image.align || DEFAULT_ALIGN : DEFAULT_ALIGN;
     imageAlign = imageAlign.toLowerCase();
-
-    const imageMapping = {};
-    let imageCount = 1;
-
-	function calcMapCount(name) {
-		let count = imageMapping[name];
-		if (!count) {
-			count = imageMapping[name] = imageCount++;
-		}
-		return count;
-	}
 
     aspect.before = (input) => {
 

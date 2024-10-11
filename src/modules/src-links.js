@@ -13,7 +13,6 @@ const aspect = aspectBase("links");
 const LINK_REGX = /\[((.|\s)*?)\]\(((.|\s)*?)( "(.*?)")*\)/;
 const MAIL_REGX = /<([a-zA-Z_\-0-9]+@[a-zA-Z_\-0-9]+(\.[a-zA-Z_\-0-9]+)+)>/;
 
-
 const replaceSrcLinks = () => {
 
 	aspect.before = (input) => {
