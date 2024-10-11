@@ -40,23 +40,23 @@ module.exports = exports = require("./base").create((input, options) => {
 			string = LF + string + LF;
 
 			string = _replaceImages.before(string);
-			string = _replaceQuote.before(string);
+			string = _replaceAlign.before(string);
 			string = _replaceSrcLinks.before(string);
 			string = _replaceTable.before(string);
 			string = _replaceHeading.before(string);
 			string = _replaceList.before(string);
-			string = _replaceAlign.before(string);
 			string = _replaceReference.before(string);
+			string = _replaceQuote.before(string);
 
 			string = replaceInline(string); // 行内设置
 
 			string = _replaceQuote.after(string);
-			string = _replaceAlign.after(string);
+			string = _replaceReference.after(string);
 			string = _replaceList.after(string);
 			string = _replaceHeading.after(string);
 			string = _replaceTable.after(string);
 			string = _replaceSrcLinks.after(string);
-			string = _replaceReference.after(string);
+			string = _replaceAlign.after(string);
 			string = _replaceImages.after(string);
 	
 			// string = replaceReference(string); // TODO 参考链接
