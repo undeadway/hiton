@@ -21,7 +21,7 @@ function replaceRefValue () {
 			const count = calcMapCount(label);
 
 			text = replaceInline(text);
-			const valRef = `<div id="hiton-ref-val-id__${count}""><a href="#hiton-ref-using-id__${count}">${label}</a>：${text} <a href="#hiton-ref-using-id__${count}">↰</a></div>`;
+			const valRef = `<div id="rvid__${count}""><a href="#rsid__${count}">${label}</a>：${text} <a href="#rsid__${count}">↰</a></div>`;
 
 			input = aspect.replace(input, proto, valRef);
 		}

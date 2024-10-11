@@ -98,7 +98,7 @@ function replaceRefUsing(input) {
 		const [ proto, label ] = matched; 
 		const count = calcMapCount(label);
 
-		const usingRef = `<sup id="hiton-ref-using-id__${count}"><a href="#hiton-ref-val-id__${count}">${label}</a></sup>`;
+		const usingRef = `<sup id="rsid__${count}"><a href="#rvid__${count}">${label}</a></sup>`;
 
 		input = input.replace(proto, usingRef);
 	}
