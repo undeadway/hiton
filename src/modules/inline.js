@@ -120,9 +120,9 @@ function replaceInline(input) {
 	input = input.replace(DEL_LINE_REGX, DEL_LINE_STR); // 删除线
 	input = input.replace(INS_LINE_REGX, INS_LINE_STR); // 下划线
 
-    input = replaceColor(input); // 颜色
+	input = replaceColor(input); // 颜色
 	input = replaceFont(input); // 字号
-    input = replacePhonetic(input); // 注音
+	input = replacePhonetic(input); // 注音
 	input = replaceSupSub(input); // 上下标
 	input = replaceRefUsing(input); // 参考（引用）
 
