@@ -33,7 +33,25 @@
 }
 
 .hiton table tr:nth-child(odd) {
-	background: #DCDFE6;
+	background: #ebedf0;
 }
 
+.hiton-table-define {
+	text-align: center;
+}
 
+.hiton-span-bold {
+	font-weight: bold;
+}
+
+.hiton-span-margin,
+.hiton-ref-value a {
+	display: inline-block;
+	margin: auto 3px;
+}
+
+.hiton fieldset {
+	border: 1px solid #909399;
+    background: #ebedf0;
+	margin: 10px 5px;
+}

@@ -9,7 +9,7 @@ function replaceInlineCode () {
 	inlineCode.before = input => {
 		while ((matched = INLINE_CODE_REGX.exec(input)) !== null) {
 			let [ proto, text ] = matched;
-			let code = `<code class="code">${text}</code>`;
+			let code = `<code class="hiton-span-margin hiton-span-bold hiton-inline-code">${text}</code>`;
 			input = inlineCode.replace(input, proto, code);
 		}
 		return input;
