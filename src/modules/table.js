@@ -12,6 +12,9 @@ const TR_JOIN = "</tr><tr>",
 	TD_JOIN = "</td><td>",
 	TD_START = "<td>",
 	TD_END = "</td>",
+	TH_JOIN = "</th><th>",
+	TH_START = "<th>",
+	TH_END = "</th>",
 	THEAD_START = "<thead><tr>",
 	THEAD_END = "</tr></thead>",
 	TBODY_START = "<tbody><tr>",
@@ -37,7 +40,7 @@ const replaceTable = () => {
 					return td;
 				});
 				if (index === 0) {
-					tHead = THEAD_START + TD_START + line.join(TD_JOIN) + TD_END + THEAD_END;
+					tHead = THEAD_START + TH_START + line.join(TH_JOIN) + TH_END + THEAD_END;
 				} else if (index === 1) {
 					// TODO 表的第二行定义暂时不做处理
 				} else {

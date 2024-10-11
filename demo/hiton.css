@@ -1,19 +1,39 @@
 .hiton .hiton-counting-mode-heading {
-    font-size: 24px;
-    font-weight: bold;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 .hiton .hiton-align__left {
-    text-align: left;
+	text-align: left;
 }
 
 .hiton .hiton-align__center {
-    text-align: center;
+	text-align: center;
 }
 
 
 .hiton .hiton-align__right {
-    text-align: right;
+	text-align: right;
+}
+
+.hiton table {
+	border-collapse: collapse;
+	padding: 0;
+	width: 80%;
+	margin: auto;
+}
+
+.hiton table tr th {
+	background: #C0C4CC;
+}
+
+.hiton table tr th, .hiton table tr td {
+	padding: 10px;
+	border: 1px solid #909399;
+}
+
+.hiton table tr:nth-child(odd) {
+	background: #DCDFE6;
 }
 
 
