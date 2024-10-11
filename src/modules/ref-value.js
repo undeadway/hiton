@@ -6,23 +6,15 @@
  * [^注1]: => <div>注1：balaba <a hre="#c-a-1">返回</a></div>
  */
 const replaceInline = require("./inline");
-const { aspectBase } = require("./../lib/utils");
+const { aspectBase } = require("./..//lib/utils");
 const aspect = aspectBase("reference");
+
+const calcMappingCount = require("./../lib/cal-mapping-count");
+const calcMapCount = calcMappingCount.get("refrence");
 
 const REF_VALUE_REGX = /\n\[\^(.+)\]: (.+)\n/;
 
 function replaceRefValue () {
-
-	const refMapping = {};
-	let refCount = 1;
-
-	function calcMapCount(name) {
-		let count = refMapping[name];
-		if (!count) {
-			count = refMapping[name] = refCount++;
-		}
-		return count;
-	}
 
 	aspect.before = (input) => {
 
@@ -42,7 +34,4 @@ function replaceRefValue () {
 	return aspect;
 }
 
-module.exports = exports = {
-	replaceRefUsing,
-	replaceRefValue
-};
+module.exports = exports = replaceRefValue;

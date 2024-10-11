@@ -1,10 +1,10 @@
 const { COMMENT_REGX, BLANK } = require("./lib/constants");
-const { Char: { Space } } = JsConst;
+const { Char: { Space: { LF } } } = JsConst;
 
 const NL_REGX = /  \n/g,
-		N_REGX = /\n/g;
+		N_REGX = /\n/g,
+		NEW_LINE_REGX = /\r\n/g;
 const BR_TAG = "<br />";
-const LF = Space.LF;
 const TWO_LF = `${LF}${LF}`;
 
 const replaceSrcLinks = require("./modules/src-links");
@@ -21,7 +21,7 @@ const replaceInline = require("./modules/inline");
 
 function parser (input, options) {
 	try {
-		input = input.replace(/\r\n/g, LF);
+		input = input.replace(NEW_LINE_REGX, LF);
 		input = input.replace(COMMENT_REGX, BLANK); // 去掉注释
 
 		// 因为复杂结构可能含有 `__` 等字符，所以全部由 aspcet 形式来实现
@@ -80,7 +80,7 @@ function parser (input, options) {
 }
 
 module.exports = exports = {
-	create: () => {
+	create: (options, aspects = []) => {
 
 		function replaceURI(str) {
 
@@ -93,11 +93,9 @@ module.exports = exports = {
 		}
 	
 		return {
-			parse: (str, options, plugIns = []) => {
-
-				Array.forEach(plugIns, (index, aspect) => { // 定制插片前处理
+			parse: (str) => {
+				Array.forEach(aspects, (index, aspect) => { // 定制插片前处理
 					str = aspect.before(str);
-					aspects.push(aspect);
 				});
 
 				str = parser(str, options);

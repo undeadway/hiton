@@ -1,3 +1,7 @@
+
+const calcMappingCount = require("./../lib/cal-mapping-count");
+const calcMapCount = calcMappingCount.get("refrence");
+
 const { HTML: { Unit, Tag } } = JsConst;
 
 const unitSet = (() => {
