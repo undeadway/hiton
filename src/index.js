@@ -1,10 +1,10 @@
+require("coralian");
 const { aspectBase, getMappingCount } = require("./lib/utils");
 
 const { Char: { Space: { LF } } } = JsConst;
 
 const NL_REGX = /  \n/g,
-		N_REGX = /\n/g,
-		NEW_LINE_REGX = /\r\n/g,
+		NEW_LINE_REGX = /(\r\n|\r)/g,
 		COMMENT_REGX = /\/\*((.|\s)*?)\*\//g;
 const BR_TAG = "<br />";
 const TWO_LF = `${LF}${LF}`;
@@ -72,7 +72,6 @@ function parser (input, options) {
 			string = _reaplceEscapes.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
-			// string = string.replace(N_REGX, String.BLANK);// \n => 一个空白
 
 			output.push(string);
 		});

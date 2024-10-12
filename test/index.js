@@ -1,5 +1,3 @@
-require("coralian");
-
 const fs = require("fs");
 const hitOn = require("./../src/index");
 
