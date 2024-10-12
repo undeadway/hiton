@@ -251,9 +251,9 @@ buffer-from@^1.0.0:
   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==
 
 caniuse-lite@^1.0.30001663:
-  version "1.0.30001667"
-  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001667.tgz#99fc5ea0d9c6e96897a104a8352604378377f949"
-  integrity sha512-7LTwJjcRkzKFmtqGsibMeuXmvFDfZq/nzIjnmgCGzKKRVzjD72selLDK1oPF/Oxzmt4fNcPvTDvGqSDG4tCALw==
+  version "1.0.30001668"
+  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001668.tgz#98e214455329f54bf7a4d70b49c9794f0fbedbed"
+  integrity sha512-nWLrdxqCdblixUO+27JtGJJE/txpJlyUy5YN1u53wLZkP0emYCo5zgS6QYft7VUYR42LGgi/S5hdLZTrnyIddw==
 
 chrome-trace-event@^1.0.2:
   version "1.0.4"
@@ -286,7 +286,7 @@ commander@^2.20.0:
 
 "coralian@git+https://gitee.com/undeadway/coralian#dev":
   version "0.0.31"
-  resolved "git+https://gitee.com/undeadway/coralian#5bdba452accfffc4024750fd836821de194ba83c"
+  resolved "git+https://gitee.com/undeadway/coralian#39b0defe5a3df5c23ddcb7b373cf6cd5e7a3f558"
   dependencies:
     jsconst "git+https://gitee.com/undeadway/jsconst#dev"
 
@@ -460,7 +460,7 @@ jest-worker@^27.4.5:
 
 jsconst@0.0.5, "jsconst@git+https://gitee.com/undeadway/jsconst#dev":
   version "0.0.5"
-  resolved "git+https://gitee.com/undeadway/jsconst#c32237ec297cf97cab0d1798986ac989d9517dc0"
+  resolved "git+https://gitee.com/undeadway/jsconst#5fb48303a7c35b8ef6bff35b8ae69e249ca2da08"
 
 json-parse-even-better-errors@^2.3.1:
   version "2.3.1"

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const hitOn = require("./../src/index");
+const hitOn = require("./../src/dns");
 
 const file = fs.readFileSync("./test/input.md", "utf-8");
 

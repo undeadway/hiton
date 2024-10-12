@@ -16,8 +16,7 @@
   },
   "keywords": [
     "markdown",
-    "parser",
-    "plus"
+    "parser"
   ],
   "dependencies": {
     "coralian": "git+https://gitee.com/undeadway/coralian#dev"
