@@ -32,11 +32,11 @@ const 	ITALIC_REGX = /_((.|\s)*?)_/g,
 		SUP_SUB_REGX = /~(\^|\+)\{(.*?)\}/,
 		REF_USING_REGX = /\[\^(.+)\]/;
 
-const ITALIC_STR = "<em>$1</em>",
-		BOLD_STR = "<strong>$1</strong>",
-		DEL_LINE_STR = "<del>$1</del>",
-		INS_LINE_STR = "<ins>$1</ins>",
-		MARK_STR = "<mark>$1</mark>";
+const ITALIC_STR = `<em class="hiton-span-margin">$1</em>`,
+		BOLD_STR = `<strong class="hiton-span-margin">$1</strong>`,
+		DEL_LINE_STR = `<del class="hiton-span-margin">$1</del>`,
+		INS_LINE_STR = `<ins class="hiton-span-margin">$1</ins>`,
+		MARK_STR = `<mark class="hiton-span-margin">$1</mark>`;
 
 function replaceColor (input) {
 	while ((matched = COLOR_REGX.exec(input)) !== null) {
