@@ -1,9 +1,9 @@
 const fs = require("fs");
-const hitOn = require("./../src/dns");
+require("./../src/dns");
 
 const file = fs.readFileSync("./test/input.md", "utf-8");
 
-const instance = hitOn.create({
+const instance = HitOn.create({
     heading: "counting-mode",
     image: {
         align: "center"
