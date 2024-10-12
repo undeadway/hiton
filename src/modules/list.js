@@ -44,6 +44,7 @@ function replaceList() {
 			});
 
 			text = UL_START_TAG + LI_START_TAG + output.join(LI_JOIN) + LI_END_TAG + UL_END_TAG;
+			text = `<div class="hiton-list">${text}</div>`;
 			input = aspect.replace(input, proto, text);
 		}
 

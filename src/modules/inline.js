@@ -43,7 +43,7 @@ function replaceColor (input) {
 		let [ proto, color, value ] = matched;
 
 		value = replaceInline(value);
-		const output = `<span style="color:#${color}">${value}</span>`;
+		const output = `<span class="hiton-span-margin hiton-color" style="color:#${color}">${value}</span>`;
 
 		input = input.replace(proto, output);
 	}
@@ -58,7 +58,7 @@ function replaceFont (input) {
 		unit = unitSet.has[unit.toLowerCase()] ? unit : Unit_PX;
 
 		value = replaceInline(value);
-		const output = `<span style="font-size:${size}${unit};">${value}</span>`;
+		const output = `<span class="hiton-span-margin hiton-font" style="font-size:${size}${unit};">${value}</span>`;
 
 		input = input.replace(proto, output);
 	}
@@ -71,7 +71,7 @@ function replacePhonetic (input) {
 		let [ proto, text, pronunciation ] = matched;
 
 		text = replaceInline(text);
-		const output = `<ruby>${text}<rp>（</rp><rt>${pronunciation}</rt><rp>）</rp></ruby>`;
+		const output = `<span class="hiton-span-margin hiton-ruby"><ruby>${text}<rp>（</rp><rt>${pronunciation}</rt><rp>）</rp></ruby></span>`;
 
 		input = input.replace(proto, output);
 	}

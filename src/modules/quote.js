@@ -31,7 +31,7 @@ function replaceQuote() {
 			outTxt = outTxt.join(LF);
 	
 			outTxt = aspect.before(outTxt); // 递归查找看是否有多重引用
-			const quote = `<fieldset><legend>${legend}</legend>${outTxt}</fieldset>`;
+			const quote = `<div class="hiton-quote"><fieldset><legend>${legend}</legend>${outTxt}</fieldset></div>`;
 			input = aspect.replace(input, protoQuotTxt, quote);
 		}
 	
