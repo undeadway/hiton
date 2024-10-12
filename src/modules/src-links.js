@@ -22,14 +22,14 @@ const replaceSrcLinks = () => {
 			label = label ? replaceInline(label) : href;
 			title = title ? `title=${title}` : String.BLANK;
 	
-			const link = `<a ${title} href="${href}">${label}</a>`;
+			const link = `<a class="hiton-link" ${title} href="${href}">${label}</a>`;
 			input = aspect.replace(input, proto, link);
 		}
 	
 		while ((matched = MAIL_REGX.exec(input)) !== null) {
 			const [ proto, href ] = matched;
 	
-			const mailto = `<a href="mailto:${href}">${href}</a>`;
+			const mailto = `<a class="hiton-link" href="mailto:${href}">${href}</a>`;
 			input = aspect.replace(input, proto, mailto);
 		}
 	

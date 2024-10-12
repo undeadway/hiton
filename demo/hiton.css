@@ -68,11 +68,11 @@
 	padding: 5px 0px;
 }
 
-.hiton-a {
+.hiton-link {
 	color: #007eff;
 	text-decoration: underline;
 }
 
-.hiton-a:hover {
+.hiton-link:hover {
 	color: #0161c5;
 }
