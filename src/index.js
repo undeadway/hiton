@@ -22,7 +22,7 @@ const reaplceEscapes = require("./modules/esacpes");
 const replaceInline = require("./modules/inline");
 const replavePreStruct = require("./modules/pre-struct");
 
-function parser (input, options) {
+function parser (input, options = {}) {
 	try {
 		input = input.replace(NEW_LINE_REGX, LF);
 		input = input.replace(COMMENT_REGX, String.BLANK); // 去掉注释
