@@ -16,12 +16,15 @@
 
 ## 1. 基本功能
 
-斜体、粗体、删除线保持原样。
+斜体、粗体、删除线和其他 md 解析器一致。
 
-只支持 `**`的加粗，`_` 的斜体设置，  
-不支持 `*` 的斜体和 `__` 的加粗。
+**但只支持 `**`的加粗，`_` 的斜体设置，不支持 `*` 的斜体和 `__` 的加粗。**
+
+不详细说明。
 
 ## 2. 链接
+
+支持一下形式的链接。
 
 ```
 [](https://www.baidu.com)  
@@ -30,17 +33,50 @@
 [百度](https://www.baidu.com "百度一下，你就知道")
 ```
 
+输出
+```
+<a href="www.baidu.com">www.baidu.com</a>
+<a href="www.baidu.com">百度</a>
+<a title="百度一下，你就知道" href="https://www.baidu.com">https://www.baidu.com</a>
+<a title="百度一下，你就知道" href="https://www.baidu.com">百度</a>
+```
+
+不支持以下形式的链接
+
+```
+<https://www.baidu.com>
+```
+
 ## 3. 邮件
+
+支持邮件。
 
 ```
 <hzwaygc@gmail.com>
 ```
 
+输出
+```
+<a href="mailto:hzwaygc@gmail.com">hzwaygc@gmail.com</a>
+```
+
 ## 4. 图片
+
 
 ```
 ![微信公众号](https://static.waygc.net/imgs/qrcode/wechat.jpg)
 ```
+
+图片可以输出显示图片名称，输出
+
+```
+<div>
+  <img src="${https://static.waygc.net/imgs/qrcode/wechat.jpg}" />
+  <div>图：微信公众号</div>
+</div>
+```
+
+也可以关闭该选项。
 
 ## 5. 行内代码
 
@@ -56,14 +92,15 @@
   2. bbbb
 2. bbb
 3. ccc
+```
 
-1. !{微信公众号}
-
-1. aaa
-2. bbb
-3. ccc
-4. sdfad
-11. asdfadsf
+```
+* aaa
+* bbb
+  * aaaa
+  * bbbb
+* ccc
+* ddd
 ```
 
 ## 7. 引用
