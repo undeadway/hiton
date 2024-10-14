@@ -10,7 +10,6 @@ const aspcet = HitOn.createAspect("test", (input) => {
 });
 
 const instance = HitOn.create({
-    heading: "counting-mode",
     image: {
         align: "center",
         calling: false

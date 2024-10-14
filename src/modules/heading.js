@@ -17,9 +17,6 @@ const BASIC_H6_REGX = /###### (.*?)(\n|$)/g,
 	BASIC_H2_STR = "<h2>$1</h2>",
 	BASIC_H1_STR = "<h1>$1</h1>";
 
-
-const COUNTING_MODE = "COUNTING-MODE";
-
 function basicMode (input) {
 	input = input.replace(BASIC_H6_REGX, BASIC_H6_STR); // 六级标题
 	input = input.replace(BASIC_H5_REGX, BASIC_H5_STR); // 五级标题
@@ -67,7 +64,7 @@ function replaceHeading (options) {
 	_highMode = highMode();
 
 	aspect.before = (input) => {
-		const method = (options.heading.toUpperCase() === COUNTING_MODE) ? _highMode : basicMode;
+		const method = (options.heading && options.heading.countingMode === false) ? basicMode : _highMode;
 		return method(input);
 	}
 
