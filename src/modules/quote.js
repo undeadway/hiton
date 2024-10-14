@@ -18,7 +18,7 @@ function replaceQuote() {
 			let indexNL = quotTxt.indexOf(LF);
 	
 			let quotTtlLn = quotTxt.slice(0, indexNL);
-			let hasQuotTtl = String.startsWith(quotTtlLn, Bracket.LT) && String.endsWith(quotTtlLn, Bracket.GT);
+			let hasQuotTtl = String.startsWith(quotTtlLn, Bracket.LEFT) && String.endsWith(quotTtlLn, Bracket.RIGHT);
 	
 			let legend = hasQuotTtl ? quotTtlLn.slice(1, quotTtlLn.length - 1) : STRING_QUOTE;
 			let outTxt = hasQuotTtl ? quotTxt.slice(indexNL + 1) : quotTxt;
