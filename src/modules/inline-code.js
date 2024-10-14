@@ -1,5 +1,5 @@
 const { aspectBase } = require("./../lib/utils");
-let aspect = aspectBase("inlinecode");
+const aspect = aspectBase("inlinecode");
 
 const INLINE_CODE_REGX = /`([^`]+?)`/;
 
