@@ -6,7 +6,11 @@ const file = fs.readFileSync("./test/input.md", "utf-8");
 const instance = HitOn.create({
     heading: "counting-mode",
     image: {
-        align: "center"
+        align: "center",
+        calling: "not-use"
+    },
+    table: {
+        calling: "not-use"
     }
 });
 const html = instance.parse(file);

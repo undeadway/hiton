@@ -22,8 +22,11 @@ const TR_JOIN = "</tr><tr>",
 	TABLE_START = `<table class="hiton-table">`,
 	TABLE_END = "</table>";
 
+const CALLING_NOT_USE = "not-use";
 
-const replaceTable = () => {
+const replaceTable = (options) => {
+	
+	let tableCalling = options.table ? options.table.calling.toLowerCase() !== CALLING_NOT_USE : true;
 
 	aspect.before = (input) => {
 		// 表格
@@ -53,21 +56,23 @@ const replaceTable = () => {
 			input = aspect.replace(input, proto, table);
 		}
 
-		// 表格声明
-		while ((matched = TABLE_DEFINE_REGX.exec(input)) !== null) {
-			const [ proto, name ] = matched;
-			const count = calcMapCount(name);
+		if (tableCalling) {
+			// 表格声明
+			while ((matched = TABLE_DEFINE_REGX.exec(input)) !== null) {
+				const [ proto, name ] = matched;
+				const count = calcMapCount(name);
 
-			const define = `<div id="t__${count}" class="hiton-table-define">表：${name}</div>`;
-			input = aspect.replace(input, proto, define);
-		}
-		// 表格引用
-		while ((matched = TABLE_CALLING_REGX.exec(input)) !== null) {
-			const [ proto, name ] = matched;
-			const count = calcMapCount(name);
+				const define = `<div id="t__${count}" class="hiton-table-define">表：${name}</div>`;
+				input = aspect.replace(input, proto, define);
+			}
+			// 表格引用
+			while ((matched = TABLE_CALLING_REGX.exec(input)) !== null) {
+				const [ proto, name ] = matched;
+				const count = calcMapCount(name);
 
-			const calling = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#t__${count}">表：${name}</a>`;
-			input = aspect.replace(input, proto, calling);
+				const calling = `<a class="hiton-span-bold hiton-span-margin hiton-table-calling" href="#t__${count}">表：${name}</a>`;
+				input = aspect.replace(input, proto, calling);
+			}
 		}
 
 		return input;
