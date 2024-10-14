@@ -5,6 +5,10 @@ require("./../src/dns");
 
 const file = fs.readFileSync("./test/input.md", "utf-8");
 
+const aspcet = HitOn.createAspect("test", (input) => {
+    return input
+});
+
 const instance = HitOn.create({
     heading: "counting-mode",
     image: {
@@ -18,7 +22,8 @@ const instance = HitOn.create({
         });
 
         return output.value;
-    }
+    },
+    plugins: [ aspcet ]
 });
 const html = instance.parse(file);
 

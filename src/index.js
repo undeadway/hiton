@@ -91,7 +91,7 @@ function parser (input, options = {}) {
 module.exports = exports = {
 	create: (options) => {
 
-		const { plugins } = options;
+		const { plugins = [] } = options;
 
 		function replaceURI(str) {
 
