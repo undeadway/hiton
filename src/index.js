@@ -21,6 +21,7 @@ const replaceInlineCode = require("./modules/inline-code");
 const reaplceEscapes = require("./modules/esacpes");
 const replaceInline = require("./modules/inline");
 const replavePreStruct = require("./modules/pre-struct");
+const replaceCodes = require("./modules/codes");
 
 function parser (input, options = {}) {
 	try {
@@ -28,6 +29,7 @@ function parser (input, options = {}) {
 		input = input.replace(COMMENT_REGX, String.BLANK); // 去掉注释
 
 		// 因为复杂结构可能含有 `__` 等字符，所以全部由 aspcet 形式来实现
+		const _replaceCodes = replaceCodes(options); // 代码
 		const _replaceHeading = replaceHeading(options);
 		const _replaceSrcLinks = replaceSrcLinks(); // 外部连接（链接、邮箱）
 		const _replaceImages = replaceImages(options); // 图片（图片、图片引用）
@@ -45,6 +47,7 @@ function parser (input, options = {}) {
 
 			string = LF + string + LF;
 
+			string = _replaceCodes.before(string);
 			string = _reaplceEscapes.before(string);
 			string = _replaceInlineCode.before(string);
 			string = _replaceImages.before(string);
@@ -70,6 +73,7 @@ function parser (input, options = {}) {
 			string = _replaceImages.after(string);
 			string = _replaceInlineCode.after(string);
 			string = _reaplceEscapes.after(string);
+			string = _replaceCodes.after(string);
 
 			string = string.replace(NL_REGX, BR_TAG); // 单行换行
 
