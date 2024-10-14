@@ -5,7 +5,7 @@ const ESCAPER_REGX = /\\(\S)/;
 
 function replaceEscapes () {
 	aspect.before = input => {
-		while (matched = (ESCAPER_REGX.exec(input)) !== null) {
+		while ((matched = ESCAPER_REGX.exec(input)) !== null) {
 			let [ proto, text ] = matched;
 			input = aspect.replace(input, proto, text);
 		}
