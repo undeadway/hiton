@@ -2,8 +2,8 @@ const { aspectBase, getMappingCount } = require("./../lib/utils");
 const aspect = aspectBase("image");
 const calcMapCount = getMappingCount("images");
 
-const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/;
-const IMAGE_CALLING_REGX = /!\{((.|\s)*?)\}/;
+const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/,
+	IMAGE_CALLING_REGX = /!\{((.|\s)*?)\}/;
 
 const DEFAULT_ALIGN = "left";
 
