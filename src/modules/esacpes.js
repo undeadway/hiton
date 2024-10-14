@@ -1,18 +1,18 @@
 const { aspectBase } = require("./../lib/utils");
-let esacpes = aspectBase("esacpes");
+let aspect = aspectBase("esacpes");
 
 const ESCAPER_REGX = /\\(\S)/;
 
 function replaceEscapes () {
-	esacpes.before = input => {
+	aspect.before = input => {
 		while (matched = (ESCAPER_REGX.exec(input)) !== null) {
 			let [ proto, text ] = matched;
-			input = esacpes.replace(input, proto, text);
+			input = aspect.replace(input, proto, text);
 		}
 		return input;
 	};
 	
-	return esacpes;
+	return aspect;
 }
 
 module.exports = exports = replaceEscapes;

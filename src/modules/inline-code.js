@@ -1,21 +1,21 @@
 const { aspectBase } = require("./../lib/utils");
-let inlineCode = aspectBase("inlinecode");
+let aspect = aspectBase("inlinecode");
 
 const INLINE_CODE_REGX = /`([^`]+?)`/;
 
 
 function replaceInlineCode () {
 
-	inlineCode.before = input => {
+	aspect.before = input => {
 		while ((matched = INLINE_CODE_REGX.exec(input)) !== null) {
 			let [ proto, text ] = matched;
 			let code = `<code class="hiton-span-margin hiton-span-bold hiton-inline-code">${text}</code>`;
-			input = inlineCode.replace(input, proto, code);
+			input = aspect.replace(input, proto, code);
 		}
 		return input;
 	};
 
-	return inlineCode;
+	return aspect;
 }
 
 module.exports = exports = replaceInlineCode;
