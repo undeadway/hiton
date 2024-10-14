@@ -16,7 +16,7 @@ const unitSet = (() => {
 })();
 const Unit_PX = Unit.PX;
 
-const MarkMap = {
+const SupSubMap = {
 	"^": Tag.SUP,
 	"+": Tag.SUB
 };
@@ -84,7 +84,7 @@ function replaceSupSub(input) {
 		let [ proto, mark, value ] = matched;
 
 		value = replaceInline(value);
-		mark = MarkMap[mark];
+		mark = SupSubMap[mark];
 
 		const output = `<${mark}>${value}</${mark}>`;
 
