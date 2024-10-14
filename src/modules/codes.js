@@ -1,7 +1,7 @@
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("codes");
 
-const CODES_REGX = /\n```(.*)\n([^`]+?)```\n/;
+const CODES_REGX = /\n```(.*)\n([\s\S]+?)```\n/;
 
 function replaceCodes (options) {
 
