@@ -1,7 +1,7 @@
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("quote");
 
-const { Char: { Parenthe, Space: { LF } } } = JsConst;
+const { Char: { Bracket, Space: { LF } } } = JsConst;
 
 const MAIN_QUOT_REGX = /(\n(>(.*)\n)+)/,
 	NL_RT_ANGLE_GLOBAL_REGX = /\n>/g;
@@ -18,7 +18,7 @@ function replaceQuote() {
 			let indexNL = quotTxt.indexOf(LF);
 	
 			let quotTtlLn = quotTxt.slice(0, indexNL);
-			let hasQuotTtl = String.startsWith(quotTtlLn, Parenthe.LEFT) && String.endsWith(quotTtlLn, Parenthe.RIGHT);
+			let hasQuotTtl = String.startsWith(quotTtlLn, Bracket.LT) && String.endsWith(quotTtlLn, Bracket.GT);
 	
 			let legend = hasQuotTtl ? quotTtlLn.slice(1, quotTtlLn.length - 1) : STRING_QUOTE;
 			let outTxt = hasQuotTtl ? quotTxt.slice(indexNL + 1) : quotTxt;
