@@ -11,68 +11,67 @@
 	text-align: center;
 }
 
-
 .hiton .hiton-align__right {
 	text-align: right;
 }
 
-.hiton-table {
+.hiton .hiton-table {
 	border-collapse: collapse;
 	padding: 0;
 	width: 80%;
 	margin: auto;
 }
 
-.hiton-table tr th {
+.hiton .hiton-table tr th {
 	background: #C0C4CC;
 }
 
-.hiton-table tr th, .hiton-table tr td {
+.hiton .hiton-table tr th, .hiton-table tr td {
 	padding: 10px;
 	border: 1px solid #909399;
 }
 
-.hiton-table tr:nth-child(odd) {
+.hiton .hiton-table tr:nth-child(odd) {
 	background: #ebedf0;
 }
 
-.hiton-table-define {
+.hiton .hiton-table-define {
 	text-align: center;
 }
 
-.hiton-span-bold {
+.hiton .hiton-span-bold {
 	font-weight: bold;
 }
 
-.hiton-span-margin,
-.hiton-ref-value a {
+.hiton .hiton-span-margin,
+.hiton .hiton-ref-value a {
 	display: inline-block;
 	margin: auto 2px;
 }
 
-.hiton-quote fieldset {
+.hiton .hiton-quote fieldset {
 	border: 1px solid #909399;
 	background: #ebedf0;
 	margin: 10px 5px;
 }
 
-.hiton-quote fieldset legend {
+.hiton .hiton-quote fieldset legend {
 	font-weight: bold;
 }
 
-.hiton-ruby {
+.hiton .hiton-ruby {
 	margin: auto 4px;
 }
 
-.hiton-list li {
+.hiton .hiton-list li {
 	padding: 5px 0px;
 }
 
-.hiton-link {
+.hiton .hiton-link {
 	color: #007eff;
 	text-decoration: underline;
 }
 
-.hiton-link:hover {
+.hiton .hiton-link:hover {
 	color: #0161c5;
 }
