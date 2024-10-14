@@ -89,7 +89,9 @@ function parser (input, options = {}) {
 }
 
 module.exports = exports = {
-	create: (options, aspects = []) => {
+	create: (options) => {
+
+		const { plugins } = options;
 
 		function replaceURI(str) {
 
@@ -103,14 +105,14 @@ module.exports = exports = {
 	
 		return {
 			parse: (str) => {
-				Array.forEach(aspects, (index, aspect) => { // 定制插片前处理
+				Array.forEach(plugins, (index, aspect) => { // 定制插片前处理
 					str = aspect.before(str);
 				});
 
 				str = parser(str, options);
 
 				// 插片后处理
-				Array.forEach(aspects, (index, aspcet) => {
+				Array.forEach(plugins, (index, aspcet) => {
 					str = aspcet.after(str);
 				});
 
