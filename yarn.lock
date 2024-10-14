@@ -412,6 +412,11 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
+highlight.js@^11.9.0:
+  version "11.10.0"
+  resolved "https://registry.npmmirror.com/highlight.js/-/highlight.js-11.10.0.tgz#6e3600dc4b33d6dc23d5bd94fbf72405f5892b92"
+  integrity sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==
+
 import-local@^3.0.2:
   version "3.2.0"
   resolved "https://registry.npmmirror.com/import-local/-/import-local-3.2.0.tgz#c3d5c745798c02a6f8b897726aba5100186ee260"
@@ -458,7 +463,7 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jsconst@0.0.5, "jsconst@git+https://gitee.com/undeadway/jsconst#dev":
+"jsconst@git+https://gitee.com/undeadway/jsconst#dev":
   version "0.0.5"
   resolved "git+https://gitee.com/undeadway/jsconst#5fb48303a7c35b8ef6bff35b8ae69e249ca2da08"
 
@@ -505,12 +510,6 @@ mime-types@^2.1.27:
   integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
   dependencies:
     mime-db "1.52.0"
-
-"modell-highlighter@git+https://gitee.com/undeadway/modell-highlighter#dev":
-  version "0.1.0"
-  resolved "git+https://gitee.com/undeadway/modell-highlighter#172cefd7a6a23b42028215204521274b9b88c101"
-  dependencies:
-    jsconst "0.0.5"
 
 neo-async@^2.6.2:
   version "2.6.2"
