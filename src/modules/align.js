@@ -7,9 +7,9 @@ const replaceInline = require("./inline");
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("align");
 
-const 	CENTER_ALIGN_REGX = /\n>>((.|\s)+?)<<\n/,
-		LEFT_ALIGN_REGX = /\n\|\:((.|\s)+?)<<\n/,
-		RIGHT_ALIGN_REGX = /\n>>((.|\s)+?)\:\|\n/;
+const 	CENTER_ALIGN_REGX = /\n>>((.|[^\r\n])+?)<<\n/,
+		LEFT_ALIGN_REGX = /\n\|\:((.|[^\r\n])+?)<<\n/,
+		RIGHT_ALIGN_REGX = /\n>>((.|[^\r\n])+?)\:\|\n/;
 
 const CENTER_ALIGN_STR = `<div class="hiton-align__center">$1</div>`,
 		LEFT_ALIGN_STR = `<div class="hiton-align__left">$1</div>`,
