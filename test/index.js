@@ -7,10 +7,7 @@ const instance = HitOn.create({
     heading: "counting-mode",
     image: {
         align: "center",
-        calling: "not-use"
-    },
-    table: {
-        calling: "not-use"
+        calling: false
     }
 });
 const html = instance.parse(file);

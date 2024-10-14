@@ -22,11 +22,9 @@ const TR_JOIN = "</tr><tr>",
 	TABLE_START = `<table class="hiton-table">`,
 	TABLE_END = "</table>";
 
-const CALLING_NOT_USE = "not-use";
-
 const replaceTable = (options) => {
 	
-	let tableCalling = options.table ? options.table.calling.toLowerCase() !== CALLING_NOT_USE : true;
+	let tableCalling = options.table ? options.table.calling !== false : true;
 
 	aspect.before = (input) => {
 		// 表格

@@ -6,12 +6,11 @@ const IMAGE_REGX = /!\[((.|\s)*?)\]\(((.|\s)*?)\)/;
 const IMAGE_CALLING_REGX = /!\{((.|\s)*?)\}/;
 
 const DEFAULT_ALIGN = "left";
-const CALLING_NOT_USE = "not-use";
 
 function replaceImages (options) {
 
 	let imageAlign = options.image ? options.image.align || DEFAULT_ALIGN : DEFAULT_ALIGN;
-	let imageCalling = options.image ? options.image.calling.toLowerCase() !== CALLING_NOT_USE : true;
+	let imageCalling = options.image ? options.image.calling !== false : true;
 	imageAlign = imageAlign.toLowerCase();
 
 	aspect.before = (input) => {
