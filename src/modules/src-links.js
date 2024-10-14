@@ -10,7 +10,7 @@ const replaceInline = require("./inline");
 const { aspectBase } = require("./../lib/utils");
 const aspect = aspectBase("links");
 
-const LINK_REGX = /\[((.|\s)*?)\]\(((.|\s)*?)( "(.*?)")*\)/;
+const LINK_REGX = /\[((.|[^\r\n])*?)\]\(((.|\s)+?)( "(.*?)")*\)/;
 const MAIL_REGX = /<([a-zA-Z_\-0-9]+@[a-zA-Z_\-0-9]+(\.[a-zA-Z_\-0-9]+)+)>/;
 
 const replaceSrcLinks = () => {
